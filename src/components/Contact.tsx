@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Mail, Phone, MapPin, Clock, Facebook } from "lucide-react";
 import { toast } from "sonner";
 
 export const Contact = () => {
@@ -104,7 +104,8 @@ export const Contact = () => {
                   </div>
                   <div>
                     <div className="text-white font-medium">Telefonas</div>
-                    <div className="text-gray-300">+41 XX XXX XX XX</div>
+                    <div className="text-gray-300">+375 44 416 66 78</div>
+                    <div className="text-gray-400 text-sm">WhatsApp/Signal/Viber</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4 mb-4">
@@ -114,6 +115,23 @@ export const Contact = () => {
                   <div>
                     <div className="text-white font-medium">El. paštas</div>
                     <div className="text-gray-300">info@alfareklama.ch</div>
+                    <div className="text-gray-300">gmbhinvest333@gmail.com</div>
+                  </div>
+                </div>
+                <div className="flex items-center space-x-4 mb-4">
+                  <div className="bg-gradient-to-r from-blue-500/20 to-purple-600/20 p-3 rounded-full">
+                    <Facebook className="h-5 w-5 text-blue-400" />
+                  </div>
+                  <div>
+                    <div className="text-white font-medium">Facebook</div>
+                    <a 
+                      href="https://www.facebook.com/profile.php?id=61578020543147" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-gray-300 hover:text-blue-400 transition-colors"
+                    >
+                      Aplankykite mūsų puslapį
+                    </a>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4 mb-4">
@@ -153,7 +171,49 @@ export const Contact = () => {
             </Card>
           </div>
         </div>
+
+        {/* Facebook Page Plugin */}
+        <div className="mt-16 text-center">
+          <Card className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 border-gray-700/30 backdrop-blur-sm max-w-md mx-auto">
+            <CardHeader>
+              <CardTitle className="text-white">Sekite mus Facebook</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="bg-white rounded-lg p-4">
+                <div 
+                  className="fb-page" 
+                  data-href="https://www.facebook.com/profile.php?id=61578020543147" 
+                  data-tabs="timeline" 
+                  data-width="300" 
+                  data-height="200" 
+                  data-small-header="false" 
+                  data-adapt-container-width="true" 
+                  data-hide-cover="false" 
+                  data-show-facepile="true"
+                >
+                  <blockquote 
+                    cite="https://www.facebook.com/profile.php?id=61578020543147" 
+                    className="fb-xfbml-parse-ignore"
+                  >
+                    <a href="https://www.facebook.com/profile.php?id=61578020543147" target="_blank" rel="noopener noreferrer">
+                      Alfa Reklama Facebook
+                    </a>
+                  </blockquote>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
       </div>
+
+      {/* Facebook SDK */}
+      <div id="fb-root"></div>
+      <script 
+        async 
+        defer 
+        crossOrigin="anonymous" 
+        src="https://connect.facebook.net/lt_LT/sdk.js#xfbml=1&version=v18.0"
+      ></script>
     </section>
   );
 };

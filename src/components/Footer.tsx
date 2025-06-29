@@ -18,7 +18,12 @@ export const Footer = () => {
               Kuriame kampanijas, kurios atneša realius rezultatus.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="bg-gray-800 p-2 rounded-full hover:bg-blue-600 transition-colors">
+              <a 
+                href="https://www.facebook.com/profile.php?id=61578020543147" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-gray-800 p-2 rounded-full hover:bg-blue-600 transition-colors"
+              >
                 <Facebook className="h-5 w-5 text-white" />
               </a>
               <a href="#" className="bg-gray-800 p-2 rounded-full hover:bg-pink-600 transition-colors">
@@ -46,11 +51,26 @@ export const Footer = () => {
             <ul className="space-y-2">
               <li className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-blue-400" />
-                <span className="text-gray-300">+41 XX XXX XX XX</span>
+                <span className="text-gray-300">+375 44 416 66 78</span>
               </li>
               <li className="flex items-center space-x-2">
                 <Mail className="h-4 w-4 text-blue-400" />
                 <span className="text-gray-300">info@alfareklama.ch</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <Mail className="h-4 w-4 text-blue-400" />
+                <span className="text-gray-300">gmbhinvest333@gmail.com</span>
+              </li>
+              <li className="flex items-center space-x-2">
+                <Facebook className="h-4 w-4 text-blue-400" />
+                <a 
+                  href="https://www.facebook.com/profile.php?id=61578020543147" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-blue-400 transition-colors"
+                >
+                  Facebook
+                </a>
               </li>
             </ul>
           </div>
