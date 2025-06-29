@@ -90,14 +90,7 @@ export const Portfolio = () => {
               <CardContent className="p-6">
                 <div className="text-blue-200 text-sm font-medium mb-2">{project.category}</div>
                 <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
-                <p className="text-white mb-4">{project.description}</p>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="border-blue-300 text-white hover:bg-white/10 w-full"
-                >
-                  Peržiūrėti projektą
-                </Button>
+                <p className="text-white">{project.description}</p>
               </CardContent>
             </Card>
           ))}
