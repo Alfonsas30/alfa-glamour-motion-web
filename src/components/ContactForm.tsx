@@ -4,7 +4,6 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { toast } from "sonner";
 
 export const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -16,7 +15,16 @@ export const ContactForm = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    toast("Ačiū už žinutę! Susisieksime su jumis per 24 valandas.");
+    
+    // Create email body with form data
+    const emailBody = `Sveiki,%0D%0A%0D%0AVardas: ${encodeURIComponent(formData.name)}%0D%0AEl. paštas: ${encodeURIComponent(formData.email)}%0D%0ATelefonas: ${encodeURIComponent(formData.phone)}%0D%0A%0D%0AŽinutė:%0D%0A${encodeURIComponent(formData.message)}%0D%0A%0D%0AAčiū!`;
+    
+    const emailSubject = encodeURIComponent("Kontaktinės formos užklausa");
+    
+    // Open email client with pre-filled data
+    window.location.href = `mailto:gmbhinvest333@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+    
+    // Reset form after sending
     setFormData({ name: "", email: "", phone: "", message: "" });
   };
 
