@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Phone } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const CallRequestCard = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -39,14 +41,14 @@ export const CallRequestCard = () => {
       <CardHeader>
         <CardTitle className="text-white text-xl flex items-center gap-2">
           <Phone className="h-5 w-5" />
-          Užsisakyti skambutį
+          {t('contact.callRequest.title')}
         </CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           <Input
             name="name"
-            placeholder="Jūsų vardas"
+            placeholder={t('contact.callRequest.name')}
             value={formData.name}
             onChange={handleChange}
             className="bg-purple-700 border-purple-500 text-white placeholder:text-purple-200"
@@ -54,7 +56,7 @@ export const CallRequestCard = () => {
           <Input
             name="email"
             type="email"
-            placeholder="El. paštas *"
+            placeholder={t('contact.callRequest.email')}
             value={formData.email}
             onChange={handleChange}
             required
@@ -62,7 +64,7 @@ export const CallRequestCard = () => {
           />
           <Input
             name="phone"
-            placeholder="Telefono numeris *"
+            placeholder={t('contact.callRequest.phone')}
             value={formData.phone}
             onChange={handleChange}
             required
@@ -72,7 +74,7 @@ export const CallRequestCard = () => {
             type="submit" 
             className="bg-white text-purple-600 hover:bg-gray-100 w-full font-semibold"
           >
-            Užsisakyti skambutį
+            {t('contact.callRequest.button')}
           </Button>
         </form>
       </CardContent>

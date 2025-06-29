@@ -4,8 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const ContactForm = () => {
+  const { t } = useLanguage();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -38,14 +40,14 @@ export const ContactForm = () => {
   return (
     <Card className="bg-blue-600 border-blue-500 backdrop-blur-sm">
       <CardHeader>
-        <CardTitle className="text-white text-2xl">Parašykite mums</CardTitle>
+        <CardTitle className="text-white text-2xl">{t('contact.form.title')}</CardTitle>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Input
               name="name"
-              placeholder="Jūsų vardas"
+              placeholder={t('contact.form.name')}
               value={formData.name}
               onChange={handleChange}
               required
@@ -54,7 +56,7 @@ export const ContactForm = () => {
             <Input
               name="email"
               type="email"
-              placeholder="El. paštas"
+              placeholder={t('contact.form.email')}
               value={formData.email}
               onChange={handleChange}
               required
@@ -63,14 +65,14 @@ export const ContactForm = () => {
           </div>
           <Input
             name="phone"
-            placeholder="Telefono numeris"
+            placeholder={t('contact.form.phone')}
             value={formData.phone}
             onChange={handleChange}
             className="bg-blue-700 border-blue-500 text-white placeholder:text-blue-200"
           />
           <Textarea
             name="message"
-            placeholder="Papasakokite apie savo projektą..."
+            placeholder={t('contact.form.message')}
             value={formData.message}
             onChange={handleChange}
             required
@@ -82,7 +84,7 @@ export const ContactForm = () => {
             size="lg" 
             className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 w-full"
           >
-            Siųsti žinutę
+            {t('contact.form.send')}
           </Button>
         </form>
       </CardContent>

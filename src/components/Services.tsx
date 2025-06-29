@@ -1,50 +1,53 @@
+
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Monitor, Video, Megaphone, Palette, BarChart, Globe } from "lucide-react";
-
-const services = [
-  {
-    icon: Monitor,
-    title: "Internetinė reklama",
-    description: "Google Ads, Facebook Ads, LinkedIn kampanijos su aukštu konversijos koeficientu"
-  },
-  {
-    icon: Video,
-    title: "Video gamyba",
-    description: "Profesionalūs reklaminiai vaizdo įrašai, animacija ir judančioji grafika"
-  },
-  {
-    icon: Megaphone,
-    title: "Socialinių tinklų reklama",
-    description: "Instagram, TikTok, YouTube kampanijos jūsų tikslinei auditorijai"
-  },
-  {
-    icon: Palette,
-    title: "Kūrybiniai sprendimai",
-    description: "Unikalūs dizaino sprendimai, kurie išskiria jūsų prekės ženklą"
-  },
-  {
-    icon: BarChart,
-    title: "Analitika ir optimizavimas",
-    description: "Duomenimis grindžiamas kampanijų valdymas ir nuolatinis tobulinimas"
-  },
-  {
-    icon: Globe,
-    title: "Svetainių kūrimas",
-    description: "Modernus, greitai veikiantis ir SEO optimizuotas interneto svetainės"
-  }
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const Services = () => {
+  const { t } = useLanguage();
+
+  const services = [
+    {
+      icon: Monitor,
+      title: t('services.internetAds.title'),
+      description: t('services.internetAds.description')
+    },
+    {
+      icon: Video,
+      title: t('services.videoProduction.title'),
+      description: t('services.videoProduction.description')
+    },
+    {
+      icon: Megaphone,
+      title: t('services.socialMedia.title'),
+      description: t('services.socialMedia.description')
+    },
+    {
+      icon: Palette,
+      title: t('services.creative.title'),
+      description: t('services.creative.description')
+    },
+    {
+      icon: BarChart,
+      title: t('services.analytics.title'),
+      description: t('services.analytics.description')
+    },
+    {
+      icon: Globe,
+      title: t('services.websites.title'),
+      description: t('services.websites.description')
+    }
+  ];
+
   return (
     <section id="services" className="py-20 px-6">
       <div className="container mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-            Mūsų <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">Paslaugos</span>
+            {t('services.title')} <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">{t('services.titleHighlight')}</span>
           </h2>
           <p className="text-xl text-white max-w-3xl mx-auto">
-            Siūlome visapusiškas skaitmeninio marketingo paslaugas, 
-            padėsiančias jūsų verslui pasiekti naują lygį
+            {t('services.subtitle')}
           </p>
         </div>
 

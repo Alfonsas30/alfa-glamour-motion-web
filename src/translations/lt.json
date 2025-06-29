@@ -1,0 +1,145 @@
+
+{
+  "nav": {
+    "home": "Pradžia",
+    "services": "Paslaugos",
+    "about": "Apie mus",
+    "portfolio": "Projektai",
+    "contact": "Kontaktai"
+  },
+  "hero": {
+    "title1": "Profesionalios",
+    "title2": "Internetinės",
+    "title3": "ir Video Reklamos",
+    "subtitle": "Auginkite savo verslą su mūsų inovatyviais reklamos sprendimais. Kuriame įspūdingą skaitmeninį turinį, kuris paveiks jūsų auditoriją.",
+    "startProject": "Pradėti projektą",
+    "viewPortfolio": "Žiūrėti portfelį"
+  },
+  "services": {
+    "title": "Mūsų",
+    "titleHighlight": "Paslaugos",
+    "subtitle": "Siūlome visapusiškas skaitmeninio marketingo paslaugas, padėsiančias jūsų verslui pasiekti naują lygį",
+    "internetAds": {
+      "title": "Internetinė reklama",
+      "description": "Google Ads, Facebook Ads, LinkedIn kampanijos su aukštu konversijos koeficientu"
+    },
+    "videoProduction": {
+      "title": "Video gamyba",
+      "description": "Profesionalūs reklaminiai vaizdo įrašai, animacija ir judančioji grafika"
+    },
+    "socialMedia": {
+      "title": "Socialinių tinklų reklama",
+      "description": "Instagram, TikTok, YouTube kampanijos jūsų tikslinei auditorijai"
+    },
+    "creative": {
+      "title": "Kūrybiniai sprendimai",
+      "description": "Unikalūs dizaino sprendimai, kurie išskiria jūsų prekės ženklą"
+    },
+    "analytics": {
+      "title": "Analitika ir optimizavimas",
+      "description": "Duomenimis grindžiamas kampanijų valdymas ir nuolatinis tobulinimas"
+    },
+    "websites": {
+      "title": "Svetainių kūrimas",
+      "description": "Modernus, greitai veikiantis ir SEO optimizuotas interneto svetainės"
+    }
+  },
+  "about": {
+    "title": "Apie",
+    "titleHighlight": "Alfa Reklama",
+    "description1": "Esame specializuota skaitmeninio marketingo agentūra su daugiau nei 12 metų patirtimi. Mūsų komanda kuria išskirtinę internetinę ir video reklamą, kuri ne tik patraukia dėmesį, bet ir generuoja realius verslo rezultatus.",
+    "description2": "Mes tikime, kad kiekvienas verslas yra unikalus, todėl kiekvienam klientui kuriame individualų sprendimą, atitinkantį jų tikslus ir biudžetą.",
+    "learnMore": "Sužinoti daugiau",
+    "stats": {
+      "clients": "Patenkintų klientų",
+      "projects": "Sėkmingų projektų",
+      "experience": "Metų patirtis",
+      "roi": "Vidutinis ROI augimas"
+    }
+  },
+  "portfolio": {
+    "title": "Mūsų",
+    "titleHighlight": "Projektai",
+    "subtitle": "Pažiūrėkite į mūsų sėkmingiausias kampanijas ir projektus, kurie padėjo klientams pasiekti išskirtinių rezultatų",
+    "viewAll": "Žiūrėti visus projektus",
+    "projects": {
+      "ecommerce": {
+        "title": "E-komercijos kampanija",
+        "category": "Google Ads + Facebook",
+        "description": "300% pardavimų augimas per 3 mėnesius"
+      },
+      "brandVideo": {
+        "title": "Prekės ženklo video",
+        "category": "Video gamyba",
+        "description": "Korporatyvinis pristatymo vaizdo įrašas"
+      },
+      "instagram": {
+        "title": "Instagram kampanija",
+        "category": "Social Media",
+        "description": "500K peržiūrų per savaitę"
+      },
+      "animation": {
+        "title": "Animuotas reklaminis vaizdo įrašas",
+        "category": "Judančioji grafika",
+        "description": "2D animacija produkto pristatymui"
+      },
+      "linkedin": {
+        "title": "LinkedIn B2B kampanija",
+        "category": "LinkedIn Ads",
+        "description": "50+ kvalifikuotų potencialių klientų"
+      },
+      "youtube": {
+        "title": "YouTube reklamos serija",
+        "category": "YouTube Ads",
+        "description": "1M+ peržiūrų ir aukštas įsitraukimas"
+      }
+    }
+  },
+  "contact": {
+    "title": "Susisiekite su",
+    "titleHighlight": "mumis",
+    "subtitle": "Pasiruošę pradėti savo reklamos projektą? Susisiekite su mumis ir gaukite nemokamą konsultaciją",
+    "form": {
+      "title": "Parašykite mums",
+      "name": "Jūsų vardas",
+      "email": "El. paštas",
+      "phone": "Telefono numeris",
+      "message": "Papasakokite apie savo projektą...",
+      "send": "Siųsti žinutę"
+    },
+    "info": {
+      "phone": "Telefonas",
+      "phoneNote": "WhatsApp/Signal/Viber",
+      "email": "El. paštas",
+      "facebook": "Facebook",
+      "facebookText": "Aplankykite mūsų puslapį",
+      "address": "Adresas",
+      "addressText": "Šveicarija",
+      "hours": "Darbo laikas",
+      "hoursText": "Pr-Pn: 9:00-18:00"
+    },
+    "callRequest": {
+      "title": "Užsisakyti skambutį",
+      "name": "Jūsų vardas",
+      "email": "El. paštas *",
+      "phone": "Telefono numeris *",
+      "button": "Užsisakyti skambutį"
+    },
+    "facebook": {
+      "title": "Sekite mus Facebook"
+    }
+  },
+  "footer": {
+    "description": "Profesionalios internetinės ir video reklamos sprendimai jūsų verslo augimui. Kuriame kampanijas, kurios atneša realius rezultatus.",
+    "services": "Paslaugos",
+    "servicesList": {
+      "googleAds": "Google Ads",
+      "facebookAds": "Facebook Ads",
+      "video": "Video gamyba",
+      "design": "Dizainas",
+      "websites": "Svetainių kūrimas"
+    },
+    "contacts": "Kontaktai",
+    "copyright": "© 2025 Alfa Reklama. Visos teisės saugomos."
+  }
+}

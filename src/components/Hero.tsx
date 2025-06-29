@@ -1,9 +1,12 @@
+
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { t } = useLanguage();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -96,18 +99,17 @@ export const Hero = () => {
       <div className="relative z-10 container mx-auto px-6 text-center">
         <div className="max-w-4xl mx-auto">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
-            <span className="text-white">Profesionalios</span>
+            <span className="text-white">{t('hero.title1')}</span>
             <br />
             <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent animate-pulse">
-              Internetinės
+              {t('hero.title2')}
             </span>
             <br />
-            <span className="text-white">ir Video Reklamos</span>
+            <span className="text-white">{t('hero.title3')}</span>
           </h1>
           
           <p className="text-xl md:text-2xl text-gray-300 mb-8 leading-relaxed">
-            Auginkite savo verslą su mūsų inovatyviais reklamos sprendimais. 
-            Kuriame įspūdingą skaitmeninį turinį, kuris paveiks jūsų auditoriją.
+            {t('hero.subtitle')}
           </p>
           
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -116,7 +118,7 @@ export const Hero = () => {
               onClick={() => scrollToSection('contact')}
               className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-4 text-lg group"
             >
-              Pradėti projektą
+              {t('hero.startProject')}
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             
@@ -126,13 +128,12 @@ export const Hero = () => {
               className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-4 text-lg group"
             >
               <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
-              Žiūrėti portfelį
+              {t('hero.viewPortfolio')}
             </Button>
           </div>
         </div>
       </div>
       
-      {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/40 pointer-events-none" />
     </section>
   );

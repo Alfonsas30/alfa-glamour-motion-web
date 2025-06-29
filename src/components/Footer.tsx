@@ -1,7 +1,10 @@
 
 import { Facebook, Instagram, Send, Mail, Phone } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const Footer = () => {
+  const { t } = useLanguage();
+
   return (
     <footer className="bg-blue-800 backdrop-blur-sm border-t border-blue-700 py-12">
       <div className="container mx-auto px-6">
@@ -14,8 +17,7 @@ export const Footer = () => {
               <span className="text-white ml-1">REKLAMA</span>
             </div>
             <p className="text-white mb-6 max-w-md">
-              Profesionalios internetinės ir video reklamos sprendimai jūsų verslo augimui. 
-              Kuriame kampanijas, kurios atneša realius rezultatus.
+              {t('footer.description')}
             </p>
             <div className="flex space-x-4">
               <a 
@@ -46,18 +48,18 @@ export const Footer = () => {
           </div>
 
           <div>
-            <h3 className="text-white font-bold mb-4">Paslaugos</h3>
+            <h3 className="text-white font-bold mb-4">{t('footer.services')}</h3>
             <ul className="space-y-2">
-              <li><a href="#" className="text-white hover:text-blue-300 transition-colors">Google Ads</a></li>
-              <li><a href="#" className="text-white hover:text-blue-300 transition-colors">Facebook Ads</a></li>
-              <li><a href="#" className="text-white hover:text-blue-300 transition-colors">Video gamyba</a></li>
-              <li><a href="#" className="text-white hover:text-blue-300 transition-colors">Dizainas</a></li>
-              <li><a href="#" className="text-white hover:text-blue-300 transition-colors">Svetainių kūrimas</a></li>
+              <li><a href="#" className="text-white hover:text-blue-300 transition-colors">{t('footer.servicesList.googleAds')}</a></li>
+              <li><a href="#" className="text-white hover:text-blue-300 transition-colors">{t('footer.servicesList.facebookAds')}</a></li>
+              <li><a href="#" className="text-white hover:text-blue-300 transition-colors">{t('footer.servicesList.video')}</a></li>
+              <li><a href="#" className="text-white hover:text-blue-300 transition-colors">{t('footer.servicesList.design')}</a></li>
+              <li><a href="#" className="text-white hover:text-blue-300 transition-colors">{t('footer.servicesList.websites')}</a></li>
             </ul>
           </div>
 
           <div>
-            <h3 className="text-white font-bold mb-4">Kontaktai</h3>
+            <h3 className="text-white font-bold mb-4">{t('footer.contacts')}</h3>
             <ul className="space-y-2">
               <li className="flex items-center space-x-2">
                 <Phone className="h-4 w-4 text-blue-300" />
@@ -110,7 +112,7 @@ export const Footer = () => {
 
         <div className="border-t border-blue-700 mt-8 pt-8 text-center">
           <p className="text-white">
-            © 2025 Alfa Reklama. Visos teisės saugomos.
+            {t('footer.copyright')}
           </p>
         </div>
       </div>

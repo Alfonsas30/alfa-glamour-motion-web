@@ -1,15 +1,18 @@
 
 import { Button } from "@/components/ui/button";
 import { Award, Users, Clock, TrendingUp } from "lucide-react";
-
-const stats = [
-  { icon: Users, number: "500+", label: "Patenkintų klientų" },
-  { icon: Award, number: "1000+", label: "Sėkmingų projektų" },
-  { icon: Clock, number: "12+", label: "Metų patirtis" },
-  { icon: TrendingUp, number: "300%", label: "Vidutinis ROI augimas" }
-];
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const About = () => {
+  const { t } = useLanguage();
+
+  const stats = [
+    { icon: Users, number: "500+", label: t('about.stats.clients') },
+    { icon: Award, number: "1000+", label: t('about.stats.projects') },
+    { icon: Clock, number: "12+", label: t('about.stats.experience') },
+    { icon: TrendingUp, number: "300%", label: t('about.stats.roi') }
+  ];
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     element?.scrollIntoView({ behavior: 'smooth' });
@@ -21,23 +24,20 @@ export const About = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div>
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Apie <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">Alfa Reklama</span>
+              {t('about.title')} <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">{t('about.titleHighlight')}</span>
             </h2>
             <p className="text-lg text-white mb-6 leading-relaxed">
-              Esame specializuota skaitmeninio marketingo agentūra su daugiau nei 12 metų patirtimi. 
-              Mūsų komanda kuria išskirtinę internetinę ir video reklamą, kuri ne tik patraukia dėmesį, 
-              bet ir generuoja realius verslo rezultatus.
+              {t('about.description1')}
             </p>
             <p className="text-lg text-white mb-8 leading-relaxed">
-              Mes tikime, kad kiekvienas verslas yra unikalus, todėl kiekvienam klientui kuriame 
-              individualų sprendimą, atitinkantį jų tikslus ir biudžetą.
+              {t('about.description2')}
             </p>
             <Button 
               size="lg" 
               onClick={() => scrollToSection('services')}
               className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
             >
-              Sužinoti daugiau
+              {t('about.learnMore')}
             </Button>
           </div>
 

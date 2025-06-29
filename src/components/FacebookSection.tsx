@@ -1,12 +1,15 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const FacebookSection = () => {
+  const { t } = useLanguage();
+
   return (
     <div className="mt-16 text-center">
       <Card className="bg-blue-600 border-blue-500 backdrop-blur-sm max-w-md mx-auto">
         <CardHeader>
-          <CardTitle className="text-white">Sekite mus Facebook</CardTitle>
+          <CardTitle className="text-white">{t('contact.facebook.title')}</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="bg-white rounded-lg p-4">
@@ -34,7 +37,6 @@ export const FacebookSection = () => {
         </CardContent>
       </Card>
 
-      {/* Facebook SDK */}
       <div id="fb-root"></div>
       <script 
         async 

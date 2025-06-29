@@ -2,9 +2,12 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -26,54 +29,58 @@ export const Header = () => {
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center space-x-8">
             <button onClick={() => scrollToSection('home')} className="text-white hover:text-blue-400 transition-colors">
-              Pradžia
+              {t('nav.home')}
             </button>
             <button onClick={() => scrollToSection('services')} className="text-white hover:text-blue-400 transition-colors">
-              Paslaugos
+              {t('nav.services')}
             </button>
             <button onClick={() => scrollToSection('about')} className="text-white hover:text-blue-400 transition-colors">
-              Apie mus
+              {t('nav.about')}
             </button>
             <button onClick={() => scrollToSection('portfolio')} className="text-white hover:text-blue-400 transition-colors">
-              Projektai
+              {t('nav.portfolio')}
             </button>
             <Button 
               onClick={() => scrollToSection('contact')}
               className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
             >
-              Kontaktai
+              {t('nav.contact')}
             </Button>
+            <LanguageSwitcher />
           </div>
 
           {/* Mobile Menu Button */}
-          <button
-            className="md:hidden text-white p-2 hover:bg-white/10 rounded-md transition-colors"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-          >
-            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
+          <div className="flex items-center gap-2 md:hidden">
+            <LanguageSwitcher />
+            <button
+              className="text-white p-2 hover:bg-white/10 rounded-md transition-colors"
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+            >
+              {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}
         {isMenuOpen && (
           <div className="md:hidden mt-4 pb-4 space-y-4">
             <button onClick={() => scrollToSection('home')} className="block text-white hover:text-blue-400 transition-colors">
-              Pradžia
+              {t('nav.home')}
             </button>
             <button onClick={() => scrollToSection('services')} className="block text-white hover:text-blue-400 transition-colors">
-              Paslaugos
+              {t('nav.services')}
             </button>
             <button onClick={() => scrollToSection('about')} className="block text-white hover:text-blue-400 transition-colors">
-              Apie mus
+              {t('nav.about')}
             </button>
             <button onClick={() => scrollToSection('portfolio')} className="block text-white hover:text-blue-400 transition-colors">
-              Projektai
+              {t('nav.portfolio')}
             </button>
             <Button 
               onClick={() => scrollToSection('contact')}
               className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 w-full"
             >
-              Kontaktai
+              {t('nav.contact')}
             </Button>
           </div>
         )}

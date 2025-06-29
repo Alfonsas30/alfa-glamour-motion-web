@@ -1,0 +1,145 @@
+
+{
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "portfolio": "Portfolio",
+    "contact": "Contact"
+  },
+  "hero": {
+    "title1": "Professional",
+    "title2": "Internet",
+    "title3": "and Video Advertising",
+    "subtitle": "Grow your business with our innovative advertising solutions. We create impressive digital content that will impact your audience.",
+    "startProject": "Start Project",
+    "viewPortfolio": "View Portfolio"
+  },
+  "services": {
+    "title": "Our",
+    "titleHighlight": "Services",
+    "subtitle": "We offer comprehensive digital marketing services to help your business reach a new level",
+    "internetAds": {
+      "title": "Internet Advertising",
+      "description": "Google Ads, Facebook Ads, LinkedIn campaigns with high conversion rates"
+    },
+    "videoProduction": {
+      "title": "Video Production",
+      "description": "Professional advertising videos, animation and motion graphics"
+    },
+    "socialMedia": {
+      "title": "Social Media Advertising",
+      "description": "Instagram, TikTok, YouTube campaigns for your target audience"
+    },
+    "creative": {
+      "title": "Creative Solutions",
+      "description": "Unique design solutions that distinguish your brand"
+    },
+    "analytics": {
+      "title": "Analytics & Optimization",
+      "description": "Data-driven campaign management and continuous improvement"
+    },
+    "websites": {
+      "title": "Website Development",
+      "description": "Modern, fast-loading and SEO optimized websites"
+    }
+  },
+  "about": {
+    "title": "About",
+    "titleHighlight": "Alfa Reklama",
+    "description1": "We are a specialized digital marketing agency with more than 12 years of experience. Our team creates exceptional internet and video advertising that not only attracts attention but also generates real business results.",
+    "description2": "We believe that every business is unique, so we create an individual solution for each client that meets their goals and budget.",
+    "learnMore": "Learn More",
+    "stats": {
+      "clients": "Satisfied clients",
+      "projects": "Successful projects",
+      "experience": "Years of experience",
+      "roi": "Average ROI growth"
+    }
+  },
+  "portfolio": {
+    "title": "Our",
+    "titleHighlight": "Projects",
+    "subtitle": "Take a look at our most successful campaigns and projects that helped clients achieve exceptional results",
+    "viewAll": "View all projects",
+    "projects": {
+      "ecommerce": {
+        "title": "E-commerce Campaign",
+        "category": "Google Ads + Facebook",
+        "description": "300% sales growth in 3 months"
+      },
+      "brandVideo": {
+        "title": "Brand Video",
+        "category": "Video Production",
+        "description": "Corporate presentation video"
+      },
+      "instagram": {
+        "title": "Instagram Campaign",
+        "category": "Social Media",
+        "description": "500K views per week"
+      },
+      "animation": {
+        "title": "Animated Commercial Video",
+        "category": "Motion Graphics",
+        "description": "2D animation for product presentation"
+      },
+      "linkedin": {
+        "title": "LinkedIn B2B Campaign",
+        "category": "LinkedIn Ads",
+        "description": "50+ qualified potential clients"
+      },
+      "youtube": {
+        "title": "YouTube Ad Series",
+        "category": "YouTube Ads",
+        "description": "1M+ views and high engagement"
+      }
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "titleHighlight": "Us",
+    "subtitle": "Ready to start your advertising project? Contact us and get a free consultation",
+    "form": {
+      "title": "Write to us",
+      "name": "Your name",
+      "email": "Email",
+      "phone": "Phone number",
+      "message": "Tell us about your project...",
+      "send": "Send message"
+    },
+    "info": {
+      "phone": "Phone",
+      "phoneNote": "WhatsApp/Signal/Viber",
+      "email": "Email",
+      "facebook": "Facebook",
+      "facebookText": "Visit our page",
+      "address": "Address",
+      "addressText": "Switzerland",
+      "hours": "Working hours",
+      "hoursText": "Mon-Fri: 9:00-18:00"
+    },
+    "callRequest": {
+      "title": "Request a call",
+      "name": "Your name",
+      "email": "Email *",
+      "phone": "Phone number *",
+      "button": "Request a call"
+    },
+    "facebook": {
+      "title": "Follow us on Facebook"
+    }
+  },
+  "footer": {
+    "description": "Professional internet and video advertising solutions for your business growth. We create campaigns that deliver real results.",
+    "services": "Services",
+    "servicesList": {
+      "googleAds": "Google Ads",
+      "facebookAds": "Facebook Ads",
+      "video": "Video Production",
+      "design": "Design",
+      "websites": "Website Development"
+    },
+    "contacts": "Contacts",
+    "copyright": "© 2025 Alfa Reklama. All rights reserved."
+  }
+}

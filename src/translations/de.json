@@ -1,0 +1,145 @@
+
+{
+  "nav": {
+    "home": "Startseite",
+    "services": "Dienstleistungen",
+    "about": "Über uns",
+    "portfolio": "Portfolio",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "title1": "Professionelle",
+    "title2": "Internet-",
+    "title3": "und Videowerbung",
+    "subtitle": "Wachsen Sie Ihr Geschäft mit unseren innovativen Werbelösungen. Wir erstellen beeindruckende digitale Inhalte, die Ihr Publikum beeinflussen werden.",
+    "startProject": "Projekt starten",
+    "viewPortfolio": "Portfolio ansehen"
+  },
+  "services": {
+    "title": "Unsere",
+    "titleHighlight": "Dienstleistungen",
+    "subtitle": "Wir bieten umfassende digitale Marketing-Dienstleistungen, um Ihrem Unternehmen zu helfen, ein neues Level zu erreichen",
+    "internetAds": {
+      "title": "Internet-Werbung",
+      "description": "Google Ads, Facebook Ads, LinkedIn-Kampagnen mit hohen Conversion-Raten"
+    },
+    "videoProduction": {
+      "title": "Videoproduktion",
+      "description": "Professionelle Werbevideos, Animation und Motion Graphics"
+    },
+    "socialMedia": {
+      "title": "Social Media Werbung",
+      "description": "Instagram, TikTok, YouTube-Kampagnen für Ihre Zielgruppe"
+    },
+    "creative": {
+      "title": "Kreative Lösungen",
+      "description": "Einzigartige Designlösungen, die Ihre Marke auszeichnen"
+    },
+    "analytics": {
+      "title": "Analytik & Optimierung",
+      "description": "Datengetriebenes Kampagnenmanagement und kontinuierliche Verbesserung"
+    },
+    "websites": {
+      "title": "Website-Entwicklung",
+      "description": "Moderne, schnell ladende und SEO-optimierte Websites"
+    }
+  },
+  "about": {
+    "title": "Über",
+    "titleHighlight": "Alfa Reklama",
+    "description1": "Wir sind eine spezialisierte Digital Marketing Agentur mit mehr als 12 Jahren Erfahrung. Unser Team erstellt außergewöhnliche Internet- und Videowerbung, die nicht nur Aufmerksamkeit erregt, sondern auch echte Geschäftsergebnisse generiert.",
+    "description2": "Wir glauben, dass jedes Unternehmen einzigartig ist, deshalb erstellen wir für jeden Kunden eine individuelle Lösung, die ihren Zielen und Budget entspricht.",
+    "learnMore": "Mehr erfahren",
+    "stats": {
+      "clients": "Zufriedene Kunden",
+      "projects": "Erfolgreiche Projekte",
+      "experience": "Jahre Erfahrung",
+      "roi": "Durchschnittliches ROI-Wachstum"
+    }
+  },
+  "portfolio": {
+    "title": "Unsere",
+    "titleHighlight": "Projekte",
+    "subtitle": "Schauen Sie sich unsere erfolgreichsten Kampagnen und Projekte an, die Kunden geholfen haben, außergewöhnliche Ergebnisse zu erzielen",
+    "viewAll": "Alle Projekte ansehen",
+    "projects": {
+      "ecommerce": {
+        "title": "E-Commerce-Kampagne",
+        "category": "Google Ads + Facebook",
+        "description": "300% Umsatzwachstum in 3 Monaten"
+      },
+      "brandVideo": {
+        "title": "Marken-Video",
+        "category": "Videoproduktion",
+        "description": "Unternehmenspräsentationsvideo"
+      },
+      "instagram": {
+        "title": "Instagram-Kampagne",
+        "category": "Social Media",
+        "description": "500K Aufrufe pro Woche"
+      },
+      "animation": {
+        "title": "Animiertes Werbevideo",
+        "category": "Motion Graphics",
+        "description": "2D-Animation für Produktpräsentation"
+      },
+      "linkedin": {
+        "title": "LinkedIn B2B-Kampagne",
+        "category": "LinkedIn Ads",
+        "description": "50+ qualifizierte potenzielle Kunden"
+      },
+      "youtube": {
+        "title": "YouTube-Werbeserie",
+        "category": "YouTube Ads",
+        "description": "1M+ Aufrufe und hohe Engagement"
+      }
+    }
+  },
+  "contact": {
+    "title": "Kontaktieren Sie",
+    "titleHighlight": "uns",
+    "subtitle": "Bereit, Ihr Werbeprojekt zu starten? Kontaktieren Sie uns und erhalten Sie eine kostenlose Beratung",
+    "form": {
+      "title": "Schreiben Sie uns",
+      "name": "Ihr Name",
+      "email": "E-Mail",
+      "phone": "Telefonnummer",
+      "message": "Erzählen Sie uns von Ihrem Projekt...",
+      "send": "Nachricht senden"
+    },
+    "info": {
+      "phone": "Telefon",
+      "phoneNote": "WhatsApp/Signal/Viber",
+      "email": "E-Mail",
+      "facebook": "Facebook",
+      "facebookText": "Besuchen Sie unsere Seite",
+      "address": "Adresse",
+      "addressText": "Schweiz",
+      "hours": "Arbeitszeiten",
+      "hoursText": "Mo-Fr: 9:00-18:00"
+    },
+    "callRequest": {
+      "title": "Rückruf anfordern",
+      "name": "Ihr Name",
+      "email": "E-Mail *",
+      "phone": "Telefonnummer *",
+      "button": "Rückruf anfordern"
+    },
+    "facebook": {
+      "title": "Folgen Sie uns auf Facebook"
+    }
+  },
+  "footer": {
+    "description": "Professionelle Internet- und Videowerbungslösungen für Ihr Unternehmenswachstum. Wir erstellen Kampagnen, die echte Ergebnisse liefern.",
+    "services": "Dienstleistungen",
+    "servicesList": {
+      "googleAds": "Google Ads",
+      "facebookAds": "Facebook Ads",
+      "video": "Videoproduktion",
+      "design": "Design",
+      "websites": "Website-Entwicklung"
+    },
+    "contacts": "Kontakte",
+    "copyright": "© 2025 Alfa Reklama. Alle Rechte vorbehalten."
+  }
+}
