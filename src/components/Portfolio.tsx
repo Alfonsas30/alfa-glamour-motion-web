@@ -104,7 +104,7 @@ export const Portfolio = () => {
           <Button 
             size="lg" 
             onClick={openYouTubeChannel}
-            className="bg-white text-blue-600 hover:bg-gray-100 font-semibold shadow-lg"
+            className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
           >
             Žiūrėti visus projektus
           </Button>
