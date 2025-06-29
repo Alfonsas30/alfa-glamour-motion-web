@@ -1,11 +1,10 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { toast } from "sonner";
 
 export const CallRequestCard = () => {
   const handleCallRequest = () => {
-    toast("Skambučio užklausa išsiųsta! Perskambinsime per 30 minučių.");
+    window.location.href = "mailto:gmbhinvest333@gmail.com?subject=Nemokamos konsultacijos užklausa&body=Sveiki,%0D%0A%0D%0ANoriu užsisakyti nemokamą konsultaciją dėl reklamos strategijos.%0D%0A%0D%0AAčiū!";
   };
 
   return (
