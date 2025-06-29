@@ -10,6 +10,11 @@ const stats = [
 ];
 
 export const About = () => {
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <section id="about" className="py-20 px-6">
       <div className="container mx-auto">
@@ -29,6 +34,7 @@ export const About = () => {
             </p>
             <Button 
               size="lg" 
+              onClick={() => scrollToSection('services')}
               className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
             >
               Sužinoti daugiau

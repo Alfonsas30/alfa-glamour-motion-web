@@ -1,10 +1,14 @@
-
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
 
 export const Hero = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    element?.scrollIntoView({ behavior: 'smooth' });
+  };
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -109,6 +113,7 @@ export const Hero = () => {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Button 
               size="lg" 
+              onClick={() => scrollToSection('contact')}
               className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-4 text-lg group"
             >
               Pradėti projektą
@@ -118,6 +123,7 @@ export const Hero = () => {
             <Button 
               variant="outline" 
               size="lg" 
+              onClick={() => scrollToSection('portfolio')}
               className="border-2 border-white/20 text-white hover:bg-white/10 px-8 py-4 text-lg group"
             >
               <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
