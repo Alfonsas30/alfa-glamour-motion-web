@@ -1,4 +1,3 @@
-
 import { useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
@@ -122,10 +121,9 @@ export const Hero = () => {
             </Button>
             
             <Button 
-              variant="outline" 
               size="lg" 
               onClick={() => scrollToSection('portfolio')}
-              className="border-2 border-white/60 bg-white/10 text-white hover:bg-white/20 hover:border-white/80 px-8 py-4 text-lg group backdrop-blur-sm"
+              className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-4 text-lg group"
             >
               <Play className="mr-2 h-5 w-5 group-hover:scale-110 transition-transform" />
               Žiūrėti portfelį
