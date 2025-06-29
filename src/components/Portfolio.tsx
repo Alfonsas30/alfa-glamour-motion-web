@@ -1,4 +1,3 @@
-
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Play } from "lucide-react";
@@ -49,6 +48,10 @@ const projects = [
 ];
 
 export const Portfolio = () => {
+  const openYouTubeChannel = () => {
+    window.open('https://www.youtube.com/@Alfonsas-ir-tiek', '_blank');
+  };
+
   return (
     <section id="portfolio" className="py-20 px-6">
       <div className="container mx-auto">
@@ -99,6 +102,7 @@ export const Portfolio = () => {
         <div className="text-center mt-12">
           <Button 
             size="lg" 
+            onClick={openYouTubeChannel}
             className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
           >
             Žiūrėti visus projektus
