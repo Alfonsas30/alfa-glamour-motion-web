@@ -1,5 +1,5 @@
 
-import { Facebook, Instagram, Linkedin, Mail, Phone } from "lucide-react";
+import { Facebook, Instagram, Send, Mail, Phone } from "lucide-react";
 
 export const Footer = () => {
   return (
@@ -34,8 +34,13 @@ export const Footer = () => {
               >
                 <Instagram className="h-5 w-5 text-white" />
               </a>
-              <a href="#" className="bg-blue-700 p-2 rounded-full hover:bg-blue-600 transition-colors">
-                <Linkedin className="h-5 w-5 text-white" />
+              <a 
+                href="https://t.me/snlvlt/137" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-blue-700 p-2 rounded-full hover:bg-blue-600 transition-colors"
+              >
+                <Send className="h-5 w-5 text-white" />
               </a>
             </div>
           </div>
@@ -86,6 +91,17 @@ export const Footer = () => {
                   className="text-white hover:text-pink-300 transition-colors"
                 >
                   Instagram
+                </a>
+              </li>
+              <li className="flex items-center space-x-2">
+                <Send className="h-4 w-4 text-blue-300" />
+                <a 
+                  href="https://t.me/snlvlt/137" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-blue-300 transition-colors"
+                >
+                  Telegram
                 </a>
               </li>
             </ul>
