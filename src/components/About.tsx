@@ -5,7 +5,7 @@ import { Award, Users, Clock, TrendingUp } from "lucide-react";
 const stats = [
   { icon: Users, number: "500+", label: "Patenkintų klientų" },
   { icon: Award, number: "1000+", label: "Sėkmingų projektų" },
-  { icon: Clock, number: "5+", label: "Metų patirtis" },
+  { icon: Clock, number: "12+", label: "Metų patirtis" },
   { icon: TrendingUp, number: "300%", label: "Vidutinis ROI augimas" }
 ];
 
@@ -19,7 +19,7 @@ export const About = () => {
               Apie <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">Alfa Reklama</span>
             </h2>
             <p className="text-lg text-white mb-6 leading-relaxed">
-              Esame specializuota skaitmeninio marketingo agentūra su daugiau nei 5 metų patirtimi. 
+              Esame specializuota skaitmeninio marketingo agentūra su daugiau nei 12 metų patirtimi. 
               Mūsų komanda kuria išskirtinę internetinę ir video reklamą, kuri ne tik patraukia dėmesį, 
               bet ir generuoja realius verslo rezultatus.
             </p>
