@@ -1,26 +1,80 @@
 
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Phone } from "lucide-react";
 
 export const CallRequestCard = () => {
-  const handleCallRequest = () => {
-    window.location.href = "mailto:gmbhinvest333@gmail.com?subject=Nemokamos konsultacijos užklausa&body=Sveiki,%0D%0A%0D%0ANoriu užsisakyti nemokamą konsultaciją dėl reklamos strategijos.%0D%0A%0D%0AAčiū!";
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    phone: ""
+  });
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Create email body with form data
+    const emailBody = `Užsakytas skambutis:%0D%0A%0D%0AVardas: ${encodeURIComponent(formData.name)}%0D%0AEl. paštas: ${encodeURIComponent(formData.email)}%0D%0ATelefonas: ${encodeURIComponent(formData.phone)}%0D%0A%0D%0AProšome paskambinti!`;
+    
+    const emailSubject = encodeURIComponent("Užsakytas skambutis");
+    
+    // Open email client with pre-filled data
+    window.location.href = `mailto:gmbhinvest333@gmail.com?subject=${emailSubject}&body=${emailBody}`;
+    
+    // Reset form after sending
+    setFormData({ name: "", email: "", phone: "" });
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }));
   };
 
   return (
-    <Card className="bg-blue-600 border-blue-500 backdrop-blur-sm">
-      <CardContent className="p-6 text-center">
-        <h3 className="text-white font-bold text-lg mb-2">Nemokama konsultacija</h3>
-        <p className="text-white text-sm mb-4">
-          Gaukite profesionalų vertinimą savo reklamos strategijai
-        </p>
-        <Button 
-          size="sm" 
-          onClick={handleCallRequest}
-          className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
-        >
+    <Card className="bg-gradient-to-br from-purple-600 to-blue-600 border-purple-500">
+      <CardHeader>
+        <CardTitle className="text-white text-xl flex items-center gap-2">
+          <Phone className="h-5 w-5" />
           Užsisakyti skambutį
-        </Button>
+        </CardTitle>
+      </CardHeader>
+      <CardContent>
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <Input
+            name="name"
+            placeholder="Jūsų vardas"
+            value={formData.name}
+            onChange={handleChange}
+            className="bg-purple-700 border-purple-500 text-white placeholder:text-purple-200"
+          />
+          <Input
+            name="email"
+            type="email"
+            placeholder="El. paštas *"
+            value={formData.email}
+            onChange={handleChange}
+            required
+            className="bg-purple-700 border-purple-500 text-white placeholder:text-purple-200"
+          />
+          <Input
+            name="phone"
+            placeholder="Telefono numeris *"
+            value={formData.phone}
+            onChange={handleChange}
+            required
+            className="bg-purple-700 border-purple-500 text-white placeholder:text-purple-200"
+          />
+          <Button 
+            type="submit" 
+            className="bg-white text-purple-600 hover:bg-gray-100 w-full font-semibold"
+          >
+            Užsisakyti skambutį
+          </Button>
+        </form>
       </CardContent>
     </Card>
   );
