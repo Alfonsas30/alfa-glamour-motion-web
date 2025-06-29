@@ -38,7 +38,7 @@ export const ContactInfo = () => {
             <a 
               href="https://www.facebook.com/profile.php?id=61578020543147" 
               target="_blank" 
-              rel="noopener noreferrer"
+              rel="noopener noreferrer nofollow"
               className="text-white hover:text-blue-200 transition-colors"
             >
               {t('contact.info.facebookText')}

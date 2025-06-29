@@ -6,6 +6,16 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Phone } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
+// Utility function to sanitize input for email
+const sanitizeForEmail = (input: string): string => {
+  return input
+    .replace(/[<>]/g, '') // Remove angle brackets
+    .replace(/javascript:/gi, '') // Remove javascript: protocol
+    .replace(/data:/gi, '') // Remove data: protocol
+    .trim()
+    .slice(0, 100); // Limit length
+};
+
 export const CallRequestCard = () => {
   const { t } = useLanguage();
   const [formData, setFormData] = useState({
@@ -17,8 +27,28 @@ export const CallRequestCard = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Create email body with form data
-    const emailBody = `Užsakytas skambutis:%0D%0A%0D%0AVardas: ${encodeURIComponent(formData.name)}%0D%0AEl. paštas: ${encodeURIComponent(formData.email)}%0D%0ATelefonas: ${encodeURIComponent(formData.phone)}%0D%0A%0D%0AProšome paskambinti!`;
+    // Validate required fields
+    if (!formData.email.trim() || !formData.phone.trim()) {
+      alert('Prašome užpildyti el. pašto ir telefono laukus');
+      return;
+    }
+
+    // Validate email format
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(formData.email)) {
+      alert('Prašome įvesti teisingą el. pašto adresą');
+      return;
+    }
+    
+    // Sanitize form data
+    const sanitizedData = {
+      name: sanitizeForEmail(formData.name),
+      email: sanitizeForEmail(formData.email),
+      phone: sanitizeForEmail(formData.phone)
+    };
+    
+    // Create email body with sanitized form data
+    const emailBody = `Užsakytas skambutis:%0D%0A%0D%0AVardas: ${encodeURIComponent(sanitizedData.name)}%0D%0AEl. paštas: ${encodeURIComponent(sanitizedData.email)}%0D%0ATelefonas: ${encodeURIComponent(sanitizedData.phone)}%0D%0A%0D%0AProšome paskambinti!`;
     
     const emailSubject = encodeURIComponent("Užsakytas skambutis");
     
@@ -30,9 +60,17 @@ export const CallRequestCard = () => {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    
+    // Apply input length limits
+    let maxLength = 100;
+    if (name === 'phone') maxLength = 20;
+    
+    const limitedValue = value.slice(0, maxLength);
+    
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [name]: limitedValue
     }));
   };
 
@@ -51,6 +89,7 @@ export const CallRequestCard = () => {
             placeholder={t('contact.callRequest.name')}
             value={formData.name}
             onChange={handleChange}
+            maxLength={100}
             className="bg-purple-700 border-purple-500 text-white placeholder:text-purple-200"
           />
           <Input
@@ -60,6 +99,7 @@ export const CallRequestCard = () => {
             value={formData.email}
             onChange={handleChange}
             required
+            maxLength={100}
             className="bg-purple-700 border-purple-500 text-white placeholder:text-purple-200"
           />
           <Input
@@ -68,6 +108,7 @@ export const CallRequestCard = () => {
             value={formData.phone}
             onChange={handleChange}
             required
+            maxLength={20}
             className="bg-purple-700 border-purple-500 text-white placeholder:text-purple-200"
           />
           <Button 

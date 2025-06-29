@@ -23,7 +23,7 @@ export const Footer = () => {
               <a 
                 href="https://www.facebook.com/profile.php?id=61578020543147" 
                 target="_blank" 
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
                 className="bg-blue-700 p-2 rounded-full hover:bg-blue-600 transition-colors"
               >
                 <Facebook className="h-5 w-5 text-white" />
@@ -31,7 +31,7 @@ export const Footer = () => {
               <a 
                 href="https://www.instagram.com/norvaisasalfonsa/" 
                 target="_blank" 
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
                 className="bg-blue-700 p-2 rounded-full hover:bg-pink-600 transition-colors"
               >
                 <Instagram className="h-5 w-5 text-white" />
@@ -39,7 +39,7 @@ export const Footer = () => {
               <a 
                 href="https://t.me/snlvlt/137" 
                 target="_blank" 
-                rel="noopener noreferrer"
+                rel="noopener noreferrer nofollow"
                 className="bg-blue-700 p-2 rounded-full hover:bg-blue-600 transition-colors"
               >
                 <Send className="h-5 w-5 text-white" />
@@ -78,7 +78,7 @@ export const Footer = () => {
                 <a 
                   href="https://www.facebook.com/profile.php?id=61578020543147" 
                   target="_blank" 
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer nofollow"
                   className="text-white hover:text-blue-300 transition-colors"
                 >
                   Facebook
@@ -89,7 +89,7 @@ export const Footer = () => {
                 <a 
                   href="https://www.instagram.com/norvaisasalfonsa/" 
                   target="_blank" 
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer nofollow"
                   className="text-white hover:text-pink-300 transition-colors"
                 >
                   Instagram
@@ -100,7 +100,7 @@ export const Footer = () => {
                 <a 
                   href="https://t.me/snlvlt/137" 
                   target="_blank" 
-                  rel="noopener noreferrer"
+                  rel="noopener noreferrer nofollow"
                   className="text-white hover:text-blue-300 transition-colors"
                 >
                   Telegram
