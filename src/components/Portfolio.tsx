@@ -27,7 +27,7 @@ const projects = [
   },
   {
     title: "Animuotas reklaminis vaizdo įrašas",
-    category: "Motion Graphics",
+    category: "Judančioji grafika",
     description: "2D animacija produkto pristatymui",
     image: "https://images.unsplash.com/photo-1561736778-92e52a7769ef?w=600&h=400&fit=crop",
     type: "video"
