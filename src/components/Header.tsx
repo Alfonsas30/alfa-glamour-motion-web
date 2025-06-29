@@ -47,10 +47,10 @@ export const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-white"
+            className="md:hidden text-white p-2 hover:bg-white/10 rounded-md transition-colors"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
         </div>
 
