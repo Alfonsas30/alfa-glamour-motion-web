@@ -56,7 +56,7 @@ export const Portfolio = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Mūsų <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">Projektai</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-white max-w-3xl mx-auto">
             Pažiūrėkite į mūsų sėkmingiausias kampanijas ir projektus, 
             kurie padėjo klientams pasiekti išskirtinių rezultatų
           </p>
@@ -66,7 +66,7 @@ export const Portfolio = () => {
           {projects.map((project, index) => (
             <Card 
               key={index} 
-              className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 border-gray-700/30 backdrop-blur-sm overflow-hidden group hover:scale-105 transition-all duration-300"
+              className="bg-blue-600 border-blue-500 backdrop-blur-sm overflow-hidden group hover:scale-105 transition-all duration-300"
             >
               <div className="relative overflow-hidden">
                 <img 
@@ -88,13 +88,13 @@ export const Portfolio = () => {
                 </div>
               </div>
               <CardContent className="p-6">
-                <div className="text-blue-400 text-sm font-medium mb-2">{project.category}</div>
+                <div className="text-blue-200 text-sm font-medium mb-2">{project.category}</div>
                 <h3 className="text-xl font-bold text-white mb-3">{project.title}</h3>
-                <p className="text-gray-300 mb-4">{project.description}</p>
+                <p className="text-white mb-4">{project.description}</p>
                 <Button 
                   variant="outline" 
                   size="sm" 
-                  className="border-gray-600 text-gray-300 hover:bg-white/10 w-full"
+                  className="border-blue-300 text-white hover:bg-white/10 w-full"
                 >
                   Peržiūrėti projektą
                 </Button>

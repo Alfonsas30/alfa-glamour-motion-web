@@ -35,14 +35,14 @@ export const Contact = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Susisiekite su <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">mumis</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-white max-w-3xl mx-auto">
             Pasiruošę pradėti savo reklamos projektą? Susisiekite su mumis ir gaukite nemokamą konsultaciją
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
-            <Card className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 border-gray-700/30 backdrop-blur-sm">
+            <Card className="bg-blue-600 border-blue-500 backdrop-blur-sm">
               <CardHeader>
                 <CardTitle className="text-white text-2xl">Parašykite mums</CardTitle>
               </CardHeader>
@@ -55,7 +55,7 @@ export const Contact = () => {
                       value={formData.name}
                       onChange={handleChange}
                       required
-                      className="bg-gray-800/50 border-gray-600 text-white placeholder:text-gray-400"
+                      className="bg-blue-700 border-blue-500 text-white placeholder:text-blue-200"
                     />
                     <Input
                       name="email"
@@ -64,7 +64,7 @@ export const Contact = () => {
                       value={formData.email}
                       onChange={handleChange}
                       required
-                      className="bg-gray-800/50 border-gray-600 text-white placeholder:text-gray-400"
+                      className="bg-blue-700 border-blue-500 text-white placeholder:text-blue-200"
                     />
                   </div>
                   <Input
@@ -72,7 +72,7 @@ export const Contact = () => {
                     placeholder="Telefono numeris"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="bg-gray-800/50 border-gray-600 text-white placeholder:text-gray-400"
+                    className="bg-blue-700 border-blue-500 text-white placeholder:text-blue-200"
                   />
                   <Textarea
                     name="message"
@@ -81,7 +81,7 @@ export const Contact = () => {
                     onChange={handleChange}
                     required
                     rows={5}
-                    className="bg-gray-800/50 border-gray-600 text-white placeholder:text-gray-400"
+                    className="bg-blue-700 border-blue-500 text-white placeholder:text-blue-200"
                   />
                   <Button 
                     type="submit" 
@@ -96,31 +96,31 @@ export const Contact = () => {
           </div>
 
           <div className="space-y-6">
-            <Card className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 border-gray-700/30 backdrop-blur-sm">
+            <Card className="bg-blue-600 border-blue-500 backdrop-blur-sm">
               <CardContent className="p-6">
                 <div className="flex items-center space-x-4 mb-4">
                   <div className="bg-gradient-to-r from-blue-500/20 to-purple-600/20 p-3 rounded-full">
-                    <Phone className="h-5 w-5 text-blue-400" />
+                    <Phone className="h-5 w-5 text-blue-200" />
                   </div>
                   <div>
                     <div className="text-white font-medium">Telefonas</div>
-                    <div className="text-gray-300">+375 44 416 66 78</div>
-                    <div className="text-gray-400 text-sm">WhatsApp/Signal/Viber</div>
+                    <div className="text-white">+375 44 416 66 78</div>
+                    <div className="text-blue-200 text-sm">WhatsApp/Signal/Viber</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4 mb-4">
                   <div className="bg-gradient-to-r from-blue-500/20 to-purple-600/20 p-3 rounded-full">
-                    <Mail className="h-5 w-5 text-blue-400" />
+                    <Mail className="h-5 w-5 text-blue-200" />
                   </div>
                   <div>
                     <div className="text-white font-medium">El. paštas</div>
-                    <div className="text-gray-300">info@alfareklama.ch</div>
-                    <div className="text-gray-300">gmbhinvest333@gmail.com</div>
+                    <div className="text-white">info@alfareklama.ch</div>
+                    <div className="text-white">gmbhinvest333@gmail.com</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4 mb-4">
                   <div className="bg-gradient-to-r from-blue-500/20 to-purple-600/20 p-3 rounded-full">
-                    <Facebook className="h-5 w-5 text-blue-400" />
+                    <Facebook className="h-5 w-5 text-blue-200" />
                   </div>
                   <div>
                     <div className="text-white font-medium">Facebook</div>
@@ -128,7 +128,7 @@ export const Contact = () => {
                       href="https://www.facebook.com/profile.php?id=61578020543147" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="text-gray-300 hover:text-blue-400 transition-colors"
+                      className="text-white hover:text-blue-200 transition-colors"
                     >
                       Aplankykite mūsų puslapį
                     </a>
@@ -136,20 +136,20 @@ export const Contact = () => {
                 </div>
                 <div className="flex items-center space-x-4 mb-4">
                   <div className="bg-gradient-to-r from-blue-500/20 to-purple-600/20 p-3 rounded-full">
-                    <MapPin className="h-5 w-5 text-blue-400" />
+                    <MapPin className="h-5 w-5 text-blue-200" />
                   </div>
                   <div>
                     <div className="text-white font-medium">Adresas</div>
-                    <div className="text-gray-300">Šveicarija</div>
+                    <div className="text-white">Šveicarija</div>
                   </div>
                 </div>
                 <div className="flex items-center space-x-4">
                   <div className="bg-gradient-to-r from-blue-500/20 to-purple-600/20 p-3 rounded-full">
-                    <Clock className="h-5 w-5 text-blue-400" />
+                    <Clock className="h-5 w-5 text-blue-200" />
                   </div>
                   <div>
                     <div className="text-white font-medium">Darbo laikas</div>
-                    <div className="text-gray-300">Pr-Pn: 9:00-18:00</div>
+                    <div className="text-white">Pr-Pn: 9:00-18:00</div>
                   </div>
                 </div>
               </CardContent>
@@ -158,7 +158,7 @@ export const Contact = () => {
             <Card className="bg-gradient-to-br from-blue-500/10 to-purple-600/10 border-blue-500/20 backdrop-blur-sm">
               <CardContent className="p-6 text-center">
                 <h3 className="text-white font-bold text-lg mb-2">Nemokama konsultacija</h3>
-                <p className="text-gray-300 text-sm mb-4">
+                <p className="text-white text-sm mb-4">
                   Gaukite profesionalų vertinimą savo reklamos strategijai
                 </p>
                 <Button 
@@ -174,7 +174,7 @@ export const Contact = () => {
 
         {/* Facebook Page Plugin */}
         <div className="mt-16 text-center">
-          <Card className="bg-gradient-to-br from-gray-800/30 to-gray-900/30 border-gray-700/30 backdrop-blur-sm max-w-md mx-auto">
+          <Card className="bg-blue-600 border-blue-500 backdrop-blur-sm max-w-md mx-auto">
             <CardHeader>
               <CardTitle className="text-white">Sekite mus Facebook</CardTitle>
             </CardHeader>

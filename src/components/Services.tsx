@@ -43,7 +43,7 @@ export const Services = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
             Mūsų <span className="bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text text-transparent">Paslaugos</span>
           </h2>
-          <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+          <p className="text-xl text-white max-w-3xl mx-auto">
             Siūlome visapusiškas skaitmeninio marketingo paslaugas, 
             padėsiančias jūsų verslui pasiekti naują lygį
           </p>
@@ -53,16 +53,16 @@ export const Services = () => {
           {services.map((service, index) => (
             <Card 
               key={index} 
-              className="bg-gradient-to-br from-gray-800/50 to-gray-900/50 border-gray-700/50 backdrop-blur-sm hover:scale-105 transition-all duration-300 group"
+              className="bg-blue-600 border-blue-500 backdrop-blur-sm hover:scale-105 transition-all duration-300 group"
             >
               <CardHeader className="text-center">
                 <div className="mx-auto mb-4 p-3 bg-gradient-to-r from-blue-500/20 to-purple-600/20 rounded-full w-fit group-hover:scale-110 transition-transform">
-                  <service.icon className="h-8 w-8 text-blue-400" />
+                  <service.icon className="h-8 w-8 text-blue-200" />
                 </div>
                 <CardTitle className="text-white text-xl">{service.title}</CardTitle>
               </CardHeader>
               <CardContent>
-                <CardDescription className="text-gray-300 text-center leading-relaxed">
+                <CardDescription className="text-white text-center leading-relaxed">
                   {service.description}
                 </CardDescription>
               </CardContent>
