@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Monitor, Video, Megaphone, Palette, BarChart, Globe } from "lucide-react";
 
@@ -11,7 +10,7 @@ const services = [
   {
     icon: Video,
     title: "Video gamyba",
-    description: "Profesionalūs reklaminiai vaizdo įrašai, animacija ir motion graphics"
+    description: "Profesionalūs reklaminiai vaizdo įrašai, animacija ir judančioji grafika"
   },
   {
     icon: Megaphone,
