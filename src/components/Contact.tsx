@@ -28,6 +28,10 @@ export const Contact = () => {
     }));
   };
 
+  const handleCallRequest = () => {
+    toast("Skambučio užklausa išsiųsta! Perskambinsime per 30 minučių.");
+  };
+
   return (
     <section id="contact" className="py-20 px-6">
       <div className="container mx-auto">
@@ -163,6 +167,7 @@ export const Contact = () => {
                 </p>
                 <Button 
                   size="sm" 
+                  onClick={handleCallRequest}
                   className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700"
                 >
                   Užsisakyti skambutį

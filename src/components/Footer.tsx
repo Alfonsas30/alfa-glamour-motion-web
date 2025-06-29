@@ -94,7 +94,7 @@ export const Footer = () => {
 
         <div className="border-t border-blue-700 mt-8 pt-8 text-center">
           <p className="text-white">
-            © 2024 Alfa Reklama. Visos teisės saugomos.
+            © 2025 Alfa Reklama. Visos teisės saugomos.
           </p>
         </div>
       </div>
