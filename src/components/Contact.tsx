@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -159,7 +158,7 @@ export const Contact = () => {
               </CardContent>
             </Card>
 
-            <Card className="bg-gradient-to-br from-blue-500/10 to-purple-600/10 border-blue-500/20 backdrop-blur-sm">
+            <Card className="bg-blue-600 border-blue-500 backdrop-blur-sm">
               <CardContent className="p-6 text-center">
                 <h3 className="text-white font-bold text-lg mb-2">Nemokama konsultacija</h3>
                 <p className="text-white text-sm mb-4">
