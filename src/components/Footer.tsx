@@ -26,7 +26,12 @@ export const Footer = () => {
               >
                 <Facebook className="h-5 w-5 text-white" />
               </a>
-              <a href="#" className="bg-gray-800 p-2 rounded-full hover:bg-pink-600 transition-colors">
+              <a 
+                href="https://www.instagram.com/norvaisasalfonsa/" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="bg-gray-800 p-2 rounded-full hover:bg-pink-600 transition-colors"
+              >
                 <Instagram className="h-5 w-5 text-white" />
               </a>
               <a href="#" className="bg-gray-800 p-2 rounded-full hover:bg-blue-700 transition-colors">
@@ -70,6 +75,17 @@ export const Footer = () => {
                   className="text-gray-300 hover:text-blue-400 transition-colors"
                 >
                   Facebook
+                </a>
+              </li>
+              <li className="flex items-center space-x-2">
+                <Instagram className="h-4 w-4 text-pink-400" />
+                <a 
+                  href="https://www.instagram.com/norvaisasalfonsa/" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="text-gray-300 hover:text-pink-400 transition-colors"
+                >
+                  Instagram
                 </a>
               </li>
             </ul>

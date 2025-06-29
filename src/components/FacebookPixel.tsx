@@ -25,7 +25,9 @@ export const FacebookPixel = () => {
       t.async = !0;
       t.src = v;
       s = b.getElementsByTagName(e)[0];
-      s.parentNode?.insertBefore(t, s);
+      if (s.parentNode) {
+        s.parentNode.insertBefore(t, s);
+      }
     })(window, document, 'script', 'https://connect.facebook.net/en_US/fbevents.js');
 
     // Initialize Facebook Pixel
