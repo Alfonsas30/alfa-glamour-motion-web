@@ -46,71 +46,89 @@ export const CallRequestCard = () => {
     }
 
     setIsSubmitting(true);
-    console.log('CallRequestCard: Form validation passed, attempting FormSubmit.co');
 
     try {
-      // Create FormData with explicit values from state
+      // Try Netlify Forms first (if available)
+      console.log('CallRequestCard: Attempting Netlify Forms submission');
+      
+      const netlifyResponse = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          'form-name': 'call-request',
+          'name': formData.name,
+          'email': formData.email,
+          'phone': formData.phone,
+          'request': 'Prašau paskambinti'
+        }).toString()
+      });
+
+      if (netlifyResponse.ok) {
+        console.log('CallRequestCard: Netlify Forms submission successful');
+        toast({
+          title: t('contact.callRequest.success.title'),
+          description: t('contact.callRequest.success.message'),
+        });
+        setFormData({ name: "", email: "", phone: "" });
+        return;
+      }
+    } catch (error) {
+      console.log('CallRequestCard: Netlify Forms not available, trying FormSubmit');
+    }
+
+    try {
+      // Try FormSubmit.co as backup
+      console.log('CallRequestCard: Attempting FormSubmit.co submission');
+      
       const formDataToSend = new FormData();
       formDataToSend.append('name', formData.name);
       formDataToSend.append('email', formData.email);
       formDataToSend.append('phone', formData.phone);
+      formDataToSend.append('request', 'Prašau paskambinti');
       formDataToSend.append('_subject', t('contact.callRequest.emailSubject'));
       formDataToSend.append('_captcha', 'false');
       formDataToSend.append('_template', 'table');
-      formDataToSend.append('_next', window.location.origin + "/?success=true");
 
-      console.log('CallRequestCard: FormData contents:');
-      for (let [key, value] of formDataToSend.entries()) {
-        console.log(`  ${key}: ${value}`);
-      }
-      
-      console.log('CallRequestCard: Sending request to FormSubmit.co');
-      const response = await fetch('https://formsubmit.co/el/fuwaci', {
+      const response = await fetch('https://formsubmit.co/info@alfareklama.ch', {
         method: 'POST',
-        body: formDataToSend,
-        mode: 'no-cors' // Handle CORS issues
+        body: formDataToSend
       });
 
-      console.log('CallRequestCard: Response received from FormSubmit.co');
+      console.log('CallRequestCard: FormSubmit.co response status:', response.status);
       
-      // With no-cors mode, we can't check response status, so assume success
-      console.log('CallRequestCard: Call request submitted successfully (no-cors mode)');
-      toast({
-        title: t('contact.callRequest.success.title'),
-        description: t('contact.callRequest.success.message'),
-      });
-      
-      // Reset form after successful submission
-      setFormData({ name: "", email: "", phone: "" });
-      
+      if (response.ok || response.status === 200) {
+        console.log('CallRequestCard: FormSubmit.co submission successful');
+        toast({
+          title: t('contact.callRequest.success.title'),
+          description: t('contact.callRequest.success.message'),
+        });
+        setFormData({ name: "", email: "", phone: "" });
+        return;
+      }
     } catch (error) {
-      console.error('CallRequestCard: FormSubmit.co failed, trying mailto fallback', error);
-      
-      // Fallback to mailto
-      const subject = encodeURIComponent(t('contact.callRequest.emailSubject'));
-      const body = encodeURIComponent(
-        `${t('contact.callRequest.name')}: ${formData.name}\n` +
-        `${t('contact.callRequest.email')}: ${formData.email}\n` +
-        `${t('contact.callRequest.phone')}: ${formData.phone}\n\n` +
-        `Prašau paskambinti.`
-      );
-      
-      const mailtoUrl = `mailto:info@alfareklama.ch?subject=${subject}&body=${body}`;
-      console.log('CallRequestCard: Opening mailto:', mailtoUrl);
-      
-      window.open(mailtoUrl, '_blank');
-      
-      toast({
-        title: t('contact.callRequest.success.title'),
-        description: "El. pašto programa atidaryta. Išsiųskite žinutę iš savo el. pašto programos.",
-      });
-      
-      // Reset form after fallback
-      setFormData({ name: "", email: "", phone: "" });
-    } finally {
-      setIsSubmitting(false);
-      console.log('CallRequestCard: Call request submission process completed');
+      console.error('CallRequestCard: FormSubmit.co failed:', error);
     }
+
+    // Fallback to mailto
+    console.log('CallRequestCard: Using mailto fallback');
+    const subject = encodeURIComponent(t('contact.callRequest.emailSubject'));
+    const body = encodeURIComponent(
+      `${t('contact.callRequest.name')}: ${formData.name}\n` +
+      `${t('contact.callRequest.email')}: ${formData.email}\n` +
+      `${t('contact.callRequest.phone')}: ${formData.phone}\n\n` +
+      `Prašau paskambinti.`
+    );
+    
+    const mailtoUrl = `mailto:info@alfareklama.ch?subject=${subject}&body=${body}`;
+    window.open(mailtoUrl, '_blank');
+    
+    toast({
+      title: "El. pašto programa atidaryta",
+      description: "Išsiųskite žinutę iš savo el. pašto programos arba nukopijuokite duomenis rankiniu būdu.",
+    });
+    
+    setFormData({ name: "", email: "", phone: "" });
+    setIsSubmitting(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -137,7 +155,16 @@ export const CallRequestCard = () => {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form 
+          onSubmit={handleSubmit} 
+          className="space-y-4"
+          name="call-request"
+          method="POST" 
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+        >
+          <input type="hidden" name="form-name" value="call-request" />
+          
           <Input
             name="name"
             placeholder={t('contact.callRequest.name')}

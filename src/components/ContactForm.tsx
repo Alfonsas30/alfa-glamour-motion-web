@@ -47,10 +47,40 @@ export const ContactForm = () => {
     }
 
     setIsSubmitting(true);
-    console.log('ContactForm: Form validation passed, attempting FormSubmit.co');
 
     try {
-      // Create FormData with explicit values from state
+      // Try Netlify Forms first (if available)
+      console.log('ContactForm: Attempting Netlify Forms submission');
+      
+      const netlifyResponse = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({
+          'form-name': 'contact',
+          'name': formData.name,
+          'email': formData.email,
+          'phone': formData.phone,
+          'message': formData.message
+        }).toString()
+      });
+
+      if (netlifyResponse.ok) {
+        console.log('ContactForm: Netlify Forms submission successful');
+        toast({
+          title: t('contact.form.success.title'),
+          description: t('contact.form.success.message'),
+        });
+        setFormData({ name: "", email: "", phone: "", message: "" });
+        return;
+      }
+    } catch (error) {
+      console.log('ContactForm: Netlify Forms not available, trying FormSubmit');
+    }
+
+    try {
+      // Try FormSubmit.co as backup
+      console.log('ContactForm: Attempting FormSubmit.co submission');
+      
       const formDataToSend = new FormData();
       formDataToSend.append('name', formData.name);
       formDataToSend.append('email', formData.email);
@@ -59,60 +89,47 @@ export const ContactForm = () => {
       formDataToSend.append('_subject', t('contact.form.emailSubject'));
       formDataToSend.append('_captcha', 'false');
       formDataToSend.append('_template', 'table');
-      formDataToSend.append('_next', window.location.origin + "/?success=true");
 
-      console.log('ContactForm: FormData contents:');
-      for (let [key, value] of formDataToSend.entries()) {
-        console.log(`  ${key}: ${value}`);
-      }
-      
-      console.log('ContactForm: Sending request to FormSubmit.co');
-      const response = await fetch('https://formsubmit.co/el/fuwaci', {
+      const response = await fetch('https://formsubmit.co/info@alfareklama.ch', {
         method: 'POST',
-        body: formDataToSend,
-        mode: 'no-cors' // Handle CORS issues
+        body: formDataToSend
       });
 
-      console.log('ContactForm: Response received from FormSubmit.co');
+      console.log('ContactForm: FormSubmit.co response status:', response.status);
       
-      // With no-cors mode, we can't check response status, so assume success
-      console.log('ContactForm: Form submitted successfully (no-cors mode)');
-      toast({
-        title: t('contact.form.success.title'),
-        description: t('contact.form.success.message'),
-      });
-      
-      // Reset form after successful submission
-      setFormData({ name: "", email: "", phone: "", message: "" });
-      
+      if (response.ok || response.status === 200) {
+        console.log('ContactForm: FormSubmit.co submission successful');
+        toast({
+          title: t('contact.form.success.title'),
+          description: t('contact.form.success.message'),
+        });
+        setFormData({ name: "", email: "", phone: "", message: "" });
+        return;
+      }
     } catch (error) {
-      console.error('ContactForm: FormSubmit.co failed, trying mailto fallback', error);
-      
-      // Fallback to mailto
-      const subject = encodeURIComponent(t('contact.form.emailSubject'));
-      const body = encodeURIComponent(
-        `${t('contact.form.name')}: ${formData.name}\n` +
-        `${t('contact.form.email')}: ${formData.email}\n` +
-        `${t('contact.form.phone')}: ${formData.phone}\n\n` +
-        `${t('contact.form.message')}:\n${formData.message}`
-      );
-      
-      const mailtoUrl = `mailto:info@alfareklama.ch?subject=${subject}&body=${body}`;
-      console.log('ContactForm: Opening mailto:', mailtoUrl);
-      
-      window.open(mailtoUrl, '_blank');
-      
-      toast({
-        title: t('contact.form.success.title'),
-        description: "El. pašto programa atidaryta. Išsiųskite žinutę iš savo el. pašto programos.",
-      });
-      
-      // Reset form after fallback
-      setFormData({ name: "", email: "", phone: "", message: "" });
-    } finally {
-      setIsSubmitting(false);
-      console.log('ContactForm: Form submission process completed');
+      console.error('ContactForm: FormSubmit.co failed:', error);
     }
+
+    // Fallback to mailto
+    console.log('ContactForm: Using mailto fallback');
+    const subject = encodeURIComponent(t('contact.form.emailSubject'));
+    const body = encodeURIComponent(
+      `${t('contact.form.name')}: ${formData.name}\n` +
+      `${t('contact.form.email')}: ${formData.email}\n` +
+      `${t('contact.form.phone')}: ${formData.phone}\n\n` +
+      `${t('contact.form.message')}:\n${formData.message}`
+    );
+    
+    const mailtoUrl = `mailto:info@alfareklama.ch?subject=${subject}&body=${body}`;
+    window.open(mailtoUrl, '_blank');
+    
+    toast({
+      title: "El. pašto programa atidaryta",
+      description: "Išsiųskite žinutę iš savo el. pašto programos arba nukopijuokite duomenis rankiniu būdu.",
+    });
+    
+    setFormData({ name: "", email: "", phone: "", message: "" });
+    setIsSubmitting(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -138,7 +155,16 @@ export const ContactForm = () => {
         <CardTitle className="text-white text-2xl">{t('contact.form.title')}</CardTitle>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form 
+          onSubmit={handleSubmit} 
+          className="space-y-6"
+          name="contact"
+          method="POST" 
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+        >
+          <input type="hidden" name="form-name" value="contact" />
+          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Input
               name="name"
