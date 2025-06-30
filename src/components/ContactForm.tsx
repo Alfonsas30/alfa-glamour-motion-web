@@ -21,14 +21,11 @@ export const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    console.log('ContactForm: Starting form submission', formData);
-    
     // Validate required fields
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-      console.log('ContactForm: Validation failed - missing required fields');
       toast({
-        title: t('contact.form.validation.error'),
-        description: t('contact.form.validation.requiredFields'),
+        title: "Klaida",
+        description: "Prašome užpildyti visus privaloma laukus",
         variant: "destructive",
       });
       return;
@@ -37,10 +34,9 @@ export const ContactForm = () => {
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      console.log('ContactForm: Validation failed - invalid email format');
       toast({
-        title: t('contact.form.validation.error'),
-        description: t('contact.form.validation.emailFormat'),
+        title: "Klaida",
+        description: "Prašome įvesti teisingą el. pašto adresą",
         variant: "destructive",
       });
       return;
@@ -49,87 +45,34 @@ export const ContactForm = () => {
     setIsSubmitting(true);
 
     try {
-      // Try Netlify Forms first (if available)
-      console.log('ContactForm: Attempting Netlify Forms submission');
+      const form = e.target as HTMLFormElement;
+      const formDataToSend = new FormData(form);
       
-      const netlifyResponse = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-          'form-name': 'contact',
-          'name': formData.name,
-          'email': formData.email,
-          'phone': formData.phone,
-          'message': formData.message
-        }).toString()
-      });
-
-      if (netlifyResponse.ok) {
-        console.log('ContactForm: Netlify Forms submission successful');
-        toast({
-          title: t('contact.form.success.title'),
-          description: t('contact.form.success.message'),
-        });
-        setFormData({ name: "", email: "", phone: "", message: "" });
-        return;
-      }
-    } catch (error) {
-      console.log('ContactForm: Netlify Forms not available, trying FormSubmit');
-    }
-
-    try {
-      // Try FormSubmit.co as backup
-      console.log('ContactForm: Attempting FormSubmit.co submission');
-      
-      const formDataToSend = new FormData();
-      formDataToSend.append('name', formData.name);
-      formDataToSend.append('email', formData.email);
-      formDataToSend.append('phone', formData.phone);
-      formDataToSend.append('message', formData.message);
-      formDataToSend.append('_subject', t('contact.form.emailSubject'));
-      formDataToSend.append('_captcha', 'false');
-      formDataToSend.append('_template', 'table');
-
-      const response = await fetch('https://formsubmit.co/info@alfareklama.ch', {
+      const response = await fetch('https://formsubmit.co/el/fuwaci', {
         method: 'POST',
         body: formDataToSend
       });
 
-      console.log('ContactForm: FormSubmit.co response status:', response.status);
-      
-      if (response.ok || response.status === 200) {
-        console.log('ContactForm: FormSubmit.co submission successful');
+      if (response.ok) {
         toast({
-          title: t('contact.form.success.title'),
-          description: t('contact.form.success.message'),
+          title: "Sėkmė!",
+          description: "Jūsų žinutė sėkmingai išsiųsta. Susisieksime su jumis greitai!",
         });
+        
+        // Reset form after successful submission
         setFormData({ name: "", email: "", phone: "", message: "" });
-        return;
+      } else {
+        throw new Error('Submission failed');
       }
     } catch (error) {
-      console.error('ContactForm: FormSubmit.co failed:', error);
+      toast({
+        title: "Klaida",
+        description: "Nepavyko išsiųsti žinutės. Bandykite dar kartą.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
     }
-
-    // Fallback to mailto
-    console.log('ContactForm: Using mailto fallback');
-    const subject = encodeURIComponent(t('contact.form.emailSubject'));
-    const body = encodeURIComponent(
-      `${t('contact.form.name')}: ${formData.name}\n` +
-      `${t('contact.form.email')}: ${formData.email}\n` +
-      `${t('contact.form.phone')}: ${formData.phone}\n\n` +
-      `${t('contact.form.message')}:\n${formData.message}`
-    );
-    
-    const mailtoUrl = `mailto:info@alfareklama.ch?subject=${subject}&body=${body}`;
-    window.open(mailtoUrl, '_blank');
-    
-    toast({
-      title: "El. pašto programa atidaryta",
-      description: "Išsiųskite žinutę iš savo el. pašto programos arba nukopijuokite duomenis rankiniu būdu.",
-    });
-    
-    setFormData({ name: "", email: "", phone: "", message: "" });
-    setIsSubmitting(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -155,15 +98,12 @@ export const ContactForm = () => {
         <CardTitle className="text-white text-2xl">{t('contact.form.title')}</CardTitle>
       </CardHeader>
       <CardContent>
-        <form 
-          onSubmit={handleSubmit} 
-          className="space-y-6"
-          name="contact"
-          method="POST" 
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-        >
-          <input type="hidden" name="form-name" value="contact" />
+        <form onSubmit={handleSubmit} className="space-y-6">
+          {/* FormSubmit.co configuration fields */}
+          <input type="hidden" name="_subject" value="Kontaktinės formos užklausa" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next" value={window.location.origin + "/?success=true"} />
           
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Input
@@ -210,7 +150,7 @@ export const ContactForm = () => {
             disabled={isSubmitting}
             className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 w-full"
           >
-            {isSubmitting ? t('contact.form.sending') : t('contact.form.send')}
+            {isSubmitting ? "Siunčiama..." : t('contact.form.send')}
           </Button>
         </form>
       </CardContent>

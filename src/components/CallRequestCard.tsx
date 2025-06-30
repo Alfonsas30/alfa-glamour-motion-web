@@ -20,14 +20,11 @@ export const CallRequestCard = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    console.log('CallRequestCard: Starting call request submission', formData);
-    
     // Validate required fields
     if (!formData.email.trim() || !formData.phone.trim()) {
-      console.log('CallRequestCard: Validation failed - missing required fields');
       toast({
-        title: t('contact.callRequest.validation.error'),
-        description: t('contact.callRequest.validation.requiredFields'),
+        title: "Klaida",
+        description: "Prašome užpildyti el. pašto ir telefono laukus",
         variant: "destructive",
       });
       return;
@@ -36,10 +33,9 @@ export const CallRequestCard = () => {
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      console.log('CallRequestCard: Validation failed - invalid email format');
       toast({
-        title: t('contact.callRequest.validation.error'),
-        description: t('contact.callRequest.validation.emailFormat'),
+        title: "Klaida",
+        description: "Prašome įvesti teisingą el. pašto adresą",
         variant: "destructive",
       });
       return;
@@ -48,87 +44,34 @@ export const CallRequestCard = () => {
     setIsSubmitting(true);
 
     try {
-      // Try Netlify Forms first (if available)
-      console.log('CallRequestCard: Attempting Netlify Forms submission');
+      const form = e.target as HTMLFormElement;
+      const formDataToSend = new FormData(form);
       
-      const netlifyResponse = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({
-          'form-name': 'call-request',
-          'name': formData.name,
-          'email': formData.email,
-          'phone': formData.phone,
-          'request': 'Prašau paskambinti'
-        }).toString()
-      });
-
-      if (netlifyResponse.ok) {
-        console.log('CallRequestCard: Netlify Forms submission successful');
-        toast({
-          title: t('contact.callRequest.success.title'),
-          description: t('contact.callRequest.success.message'),
-        });
-        setFormData({ name: "", email: "", phone: "" });
-        return;
-      }
-    } catch (error) {
-      console.log('CallRequestCard: Netlify Forms not available, trying FormSubmit');
-    }
-
-    try {
-      // Try FormSubmit.co as backup
-      console.log('CallRequestCard: Attempting FormSubmit.co submission');
-      
-      const formDataToSend = new FormData();
-      formDataToSend.append('name', formData.name);
-      formDataToSend.append('email', formData.email);
-      formDataToSend.append('phone', formData.phone);
-      formDataToSend.append('request', 'Prašau paskambinti');
-      formDataToSend.append('_subject', t('contact.callRequest.emailSubject'));
-      formDataToSend.append('_captcha', 'false');
-      formDataToSend.append('_template', 'table');
-
-      const response = await fetch('https://formsubmit.co/info@alfareklama.ch', {
+      const response = await fetch('https://formsubmit.co/el/fuwaci', {
         method: 'POST',
         body: formDataToSend
       });
 
-      console.log('CallRequestCard: FormSubmit.co response status:', response.status);
-      
-      if (response.ok || response.status === 200) {
-        console.log('CallRequestCard: FormSubmit.co submission successful');
+      if (response.ok) {
         toast({
-          title: t('contact.callRequest.success.title'),
-          description: t('contact.callRequest.success.message'),
+          title: "Sėkmė!",
+          description: "Jūsų skambučio užklausa sėkmingai išsiųsta. Susisieksime su jumis greitai!",
         });
+        
+        // Reset form after successful submission
         setFormData({ name: "", email: "", phone: "" });
-        return;
+      } else {
+        throw new Error('Submission failed');
       }
     } catch (error) {
-      console.error('CallRequestCard: FormSubmit.co failed:', error);
+      toast({
+        title: "Klaida",
+        description: "Nepavyko išsiųsti užklausos. Bandykite dar kartą.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
     }
-
-    // Fallback to mailto
-    console.log('CallRequestCard: Using mailto fallback');
-    const subject = encodeURIComponent(t('contact.callRequest.emailSubject'));
-    const body = encodeURIComponent(
-      `${t('contact.callRequest.name')}: ${formData.name}\n` +
-      `${t('contact.callRequest.email')}: ${formData.email}\n` +
-      `${t('contact.callRequest.phone')}: ${formData.phone}\n\n` +
-      `Prašau paskambinti.`
-    );
-    
-    const mailtoUrl = `mailto:info@alfareklama.ch?subject=${subject}&body=${body}`;
-    window.open(mailtoUrl, '_blank');
-    
-    toast({
-      title: "El. pašto programa atidaryta",
-      description: "Išsiųskite žinutę iš savo el. pašto programos arba nukopijuokite duomenis rankiniu būdu.",
-    });
-    
-    setFormData({ name: "", email: "", phone: "" });
-    setIsSubmitting(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -155,15 +98,12 @@ export const CallRequestCard = () => {
         </CardTitle>
       </CardHeader>
       <CardContent>
-        <form 
-          onSubmit={handleSubmit} 
-          className="space-y-4"
-          name="call-request"
-          method="POST" 
-          data-netlify="true"
-          netlify-honeypot="bot-field"
-        >
-          <input type="hidden" name="form-name" value="call-request" />
+        <form onSubmit={handleSubmit} className="space-y-4">
+          {/* FormSubmit.co configuration fields */}
+          <input type="hidden" name="_subject" value="Užsakytas skambutis" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next" value={window.location.origin + "/?success=true"} />
           
           <Input
             name="name"
@@ -197,7 +137,7 @@ export const CallRequestCard = () => {
             disabled={isSubmitting}
             className="bg-white text-purple-600 hover:bg-gray-100 w-full font-semibold"
           >
-            {isSubmitting ? t('contact.callRequest.sending') : t('contact.callRequest.button')}
+            {isSubmitting ? "Siunčiama..." : t('contact.callRequest.button')}
           </Button>
         </form>
       </CardContent>

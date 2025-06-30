@@ -105,21 +105,7 @@
       "email": "El. paštas",
       "phone": "Telefono numeris",
       "message": "Papasakokite apie savo projektą...",
-      "send": "Siųsti žinutę",
-      "sending": "Siunčiama...",
-      "emailSubject": "Kontaktinės formos užklausa",
-      "validation": {
-        "error": "Klaida",
-        "requiredFields": "Prašome užpildyti visus privalomus laukus",
-        "emailFormat": "Prašome įvesti teisingą el. pašto adresą"
-      },
-      "success": {
-        "title": "Sėkmė!",
-        "message": "Jūsų žinutė sėkmingai išsiųsta. Susisieksime su jumis greitai!"
-      },
-      "error": {
-        "message": "Nepavyko išsiųsti žinutės. Bandykite dar kartą."
-      }
+      "send": "Siųsti žinutę"
     },
     "info": {
       "phone": "Telefonas",
@@ -137,21 +123,7 @@
       "name": "Jūsų vardas",
       "email": "El. paštas *",
       "phone": "Telefono numeris *",
-      "button": "Užsisakyti skambutį",
-      "sending": "Siunčiama...",
-      "emailSubject": "Užsakytas skambutis",
-      "validation": {
-        "error": "Klaida",
-        "requiredFields": "Prašome užpildyti el. pašto ir telefono laukus",
-        "emailFormat": "Prašome įvesti teisingą el. pašto adresą"
-      },
-      "success": {
-        "title": "Sėkmė!",
-        "message": "Jūsų skambučio užklausa sėkmingai išsiųsta. Susisieksime su jumis greitai!"
-      },
-      "error": {
-        "message": "Nepavyko išsiųsti užklausos. Bandykite dar kartą."
-      }
+      "button": "Užsisakyti skambutį"
     },
     "facebook": {
       "title": "Sekite mus Facebook"

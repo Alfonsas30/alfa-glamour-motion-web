@@ -25,8 +25,8 @@ export const ContactInfo = () => {
           </div>
           <div>
             <div className="text-white font-medium">{t('contact.info.email')}</div>
-            <div className="text-white break-all">info@alfareklama.ch</div>
-            <div className="text-white break-all">gmbhinvest333@gmail.com</div>
+            <div className="text-white">info@alfareklama.ch</div>
+            <div className="text-white">gmbhinvest333@gmail.com</div>
           </div>
         </div>
         <div className="flex items-center space-x-4 mb-4">
@@ -39,7 +39,7 @@ export const ContactInfo = () => {
               href="https://www.facebook.com/profile.php?id=61578020543147" 
               target="_blank" 
               rel="noopener noreferrer nofollow"
-              className="text-white hover:text-blue-200 transition-colors break-words"
+              className="text-white hover:text-blue-200 transition-colors"
             >
               {t('contact.info.facebookText')}
             </a>
