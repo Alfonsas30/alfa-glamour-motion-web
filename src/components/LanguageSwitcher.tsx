@@ -28,15 +28,25 @@ export const LanguageSwitcher = () => {
         variant="ghost"
         className="text-white hover:text-blue-400 hover:bg-white/10 flex items-center gap-2"
         onClick={() => setIsOpen(!isOpen)}
+        style={{
+          fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+        }}
       >
         <Globe className="h-4 w-4" />
-        <span className="hidden sm:inline">{currentLanguage?.flag} {currentLanguage?.name}</span>
-        <span className="sm:hidden">{currentLanguage?.flag}</span>
+        <span className="hidden sm:inline text-lg">
+          {currentLanguage?.flag} {currentLanguage?.name}
+        </span>
+        <span className="sm:hidden text-lg">{currentLanguage?.flag}</span>
         <ChevronDown className="h-4 w-4" />
       </Button>
 
       {isOpen && (
-        <div className="absolute top-full right-0 mt-2 bg-blue-800 border border-blue-600 rounded-lg shadow-lg py-2 min-w-[150px] z-50">
+        <div 
+          className="absolute top-full right-0 mt-2 bg-blue-800 border border-blue-600 rounded-lg shadow-lg py-2 min-w-[150px] z-50"
+          style={{
+            fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
+          }}
+        >
           {languages.map((lang) => (
             <button
               key={lang.code}
@@ -45,7 +55,7 @@ export const LanguageSwitcher = () => {
                 language === lang.code ? 'bg-blue-700 text-white' : 'text-white'
               }`}
             >
-              <span>{lang.flag}</span>
+              <span className="text-lg">{lang.flag}</span>
               <span>{lang.name}</span>
             </button>
           ))}
