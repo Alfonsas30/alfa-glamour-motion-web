@@ -5,60 +5,74 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { useLanguage } from "@/contexts/LanguageContext";
-
-// Utility function to sanitize input for email
-const sanitizeForEmail = (input: string): string => {
-  return input
-    .replace(/[<>]/g, '') // Remove angle brackets
-    .replace(/javascript:/gi, '') // Remove javascript: protocol
-    .replace(/data:/gi, '') // Remove data: protocol
-    .trim()
-    .slice(0, 500); // Limit length
-};
+import { useToast } from "@/hooks/use-toast";
 
 export const ContactForm = () => {
   const { t } = useLanguage();
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: "",
     message: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validate required fields
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
-      alert('Prašome užpildyti visus privaloma laukus');
+      toast({
+        title: "Klaida",
+        description: "Prašome užpildyti visus privaloma laukus",
+        variant: "destructive",
+      });
       return;
     }
 
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      alert('Prašome įvesti teisingą el. pašto adresą');
+      toast({
+        title: "Klaida",
+        description: "Prašome įvesti teisingą el. pašto adresą",
+        variant: "destructive",
+      });
       return;
     }
-    
-    // Sanitize form data
-    const sanitizedData = {
-      name: sanitizeForEmail(formData.name),
-      email: sanitizeForEmail(formData.email),
-      phone: sanitizeForEmail(formData.phone),
-      message: sanitizeForEmail(formData.message)
-    };
-    
-    // Create email body with sanitized form data
-    const emailBody = `Sveiki,%0D%0A%0D%0AVardas: ${encodeURIComponent(sanitizedData.name)}%0D%0AEl. paštas: ${encodeURIComponent(sanitizedData.email)}%0D%0ATelefonas: ${encodeURIComponent(sanitizedData.phone)}%0D%0A%0D%0AŽinutė:%0D%0A${encodeURIComponent(sanitizedData.message)}%0D%0A%0D%0AAčiū!`;
-    
-    const emailSubject = encodeURIComponent("Kontaktinės formos užklausa");
-    
-    // Open email client with pre-filled data
-    window.location.href = `mailto:gmbhinvest333@gmail.com?subject=${emailSubject}&body=${emailBody}`;
-    
-    // Reset form after sending
-    setFormData({ name: "", email: "", phone: "", message: "" });
+
+    setIsSubmitting(true);
+
+    try {
+      const form = e.target as HTMLFormElement;
+      const formDataToSend = new FormData(form);
+      
+      const response = await fetch('https://formsubmit.co/el/fuwaci', {
+        method: 'POST',
+        body: formDataToSend
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Sėkmė!",
+          description: "Jūsų žinutė sėkmingai išsiųsta. Susisieksime su jumis greitai!",
+        });
+        
+        // Reset form after successful submission
+        setFormData({ name: "", email: "", phone: "", message: "" });
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (error) {
+      toast({
+        title: "Klaida",
+        description: "Nepavyko išsiųsti žinutės. Bandykite dar kartą.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -85,6 +99,12 @@ export const ContactForm = () => {
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
+          {/* FormSubmit.co configuration fields */}
+          <input type="hidden" name="_subject" value="Kontaktinės formos užklausa" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next" value={window.location.origin + "/?success=true"} />
+          
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <Input
               name="name"
@@ -127,9 +147,10 @@ export const ContactForm = () => {
           <Button 
             type="submit" 
             size="lg" 
+            disabled={isSubmitting}
             className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 w-full"
           >
-            {t('contact.form.send')}
+            {isSubmitting ? "Siunčiama..." : t('contact.form.send')}
           </Button>
         </form>
       </CardContent>

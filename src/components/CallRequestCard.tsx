@@ -5,58 +5,73 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Phone } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
-
-// Utility function to sanitize input for email
-const sanitizeForEmail = (input: string): string => {
-  return input
-    .replace(/[<>]/g, '') // Remove angle brackets
-    .replace(/javascript:/gi, '') // Remove javascript: protocol
-    .replace(/data:/gi, '') // Remove data: protocol
-    .trim()
-    .slice(0, 100); // Limit length
-};
+import { useToast } from "@/hooks/use-toast";
 
 export const CallRequestCard = () => {
   const { t } = useLanguage();
+  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     phone: ""
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
     // Validate required fields
     if (!formData.email.trim() || !formData.phone.trim()) {
-      alert('Prašome užpildyti el. pašto ir telefono laukus');
+      toast({
+        title: "Klaida",
+        description: "Prašome užpildyti el. pašto ir telefono laukus",
+        variant: "destructive",
+      });
       return;
     }
 
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
-      alert('Prašome įvesti teisingą el. pašto adresą');
+      toast({
+        title: "Klaida",
+        description: "Prašome įvesti teisingą el. pašto adresą",
+        variant: "destructive",
+      });
       return;
     }
-    
-    // Sanitize form data
-    const sanitizedData = {
-      name: sanitizeForEmail(formData.name),
-      email: sanitizeForEmail(formData.email),
-      phone: sanitizeForEmail(formData.phone)
-    };
-    
-    // Create email body with sanitized form data
-    const emailBody = `Užsakytas skambutis:%0D%0A%0D%0AVardas: ${encodeURIComponent(sanitizedData.name)}%0D%0AEl. paštas: ${encodeURIComponent(sanitizedData.email)}%0D%0ATelefonas: ${encodeURIComponent(sanitizedData.phone)}%0D%0A%0D%0AProšome paskambinti!`;
-    
-    const emailSubject = encodeURIComponent("Užsakytas skambutis");
-    
-    // Open email client with pre-filled data
-    window.location.href = `mailto:gmbhinvest333@gmail.com?subject=${emailSubject}&body=${emailBody}`;
-    
-    // Reset form after sending
-    setFormData({ name: "", email: "", phone: "" });
+
+    setIsSubmitting(true);
+
+    try {
+      const form = e.target as HTMLFormElement;
+      const formDataToSend = new FormData(form);
+      
+      const response = await fetch('https://formsubmit.co/el/fuwaci', {
+        method: 'POST',
+        body: formDataToSend
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Sėkmė!",
+          description: "Jūsų skambučio užklausa sėkmingai išsiųsta. Susisieksime su jumis greitai!",
+        });
+        
+        // Reset form after successful submission
+        setFormData({ name: "", email: "", phone: "" });
+      } else {
+        throw new Error('Submission failed');
+      }
+    } catch (error) {
+      toast({
+        title: "Klaida",
+        description: "Nepavyko išsiųsti užklausos. Bandykite dar kartą.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -84,6 +99,12 @@ export const CallRequestCard = () => {
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
+          {/* FormSubmit.co configuration fields */}
+          <input type="hidden" name="_subject" value="Užsakytas skambutis" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
+          <input type="hidden" name="_next" value={window.location.origin + "/?success=true"} />
+          
           <Input
             name="name"
             placeholder={t('contact.callRequest.name')}
@@ -113,9 +134,10 @@ export const CallRequestCard = () => {
           />
           <Button 
             type="submit" 
+            disabled={isSubmitting}
             className="bg-white text-purple-600 hover:bg-gray-100 w-full font-semibold"
           >
-            {t('contact.callRequest.button')}
+            {isSubmitting ? "Siunčiama..." : t('contact.callRequest.button')}
           </Button>
         </form>
       </CardContent>
