@@ -23,8 +23,8 @@ export const CallRequestCard = () => {
     // Validate required fields
     if (!formData.email.trim() || !formData.phone.trim()) {
       toast({
-        title: "Klaida",
-        description: "Prašome užpildyti el. pašto ir telefono laukus",
+        title: t('contact.callRequest.validation.error'),
+        description: t('contact.callRequest.validation.requiredFields'),
         variant: "destructive",
       });
       return;
@@ -34,8 +34,8 @@ export const CallRequestCard = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       toast({
-        title: "Klaida",
-        description: "Prašome įvesti teisingą el. pašto adresą",
+        title: t('contact.callRequest.validation.error'),
+        description: t('contact.callRequest.validation.emailFormat'),
         variant: "destructive",
       });
       return;
@@ -54,8 +54,8 @@ export const CallRequestCard = () => {
 
       if (response.ok) {
         toast({
-          title: "Sėkmė!",
-          description: "Jūsų skambučio užklausa sėkmingai išsiųsta. Susisieksime su jumis greitai!",
+          title: t('contact.callRequest.success.title'),
+          description: t('contact.callRequest.success.message'),
         });
         
         // Reset form after successful submission
@@ -65,8 +65,8 @@ export const CallRequestCard = () => {
       }
     } catch (error) {
       toast({
-        title: "Klaida",
-        description: "Nepavyko išsiųsti užklausos. Bandykite dar kartą.",
+        title: t('contact.callRequest.validation.error'),
+        description: t('contact.callRequest.error.message'),
         variant: "destructive",
       });
     } finally {
@@ -100,7 +100,7 @@ export const CallRequestCard = () => {
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-4">
           {/* FormSubmit.co configuration fields */}
-          <input type="hidden" name="_subject" value="Užsakytas skambutis" />
+          <input type="hidden" name="_subject" value={t('contact.callRequest.emailSubject')} />
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_template" value="table" />
           <input type="hidden" name="_next" value={window.location.origin + "/?success=true"} />
@@ -137,7 +137,7 @@ export const CallRequestCard = () => {
             disabled={isSubmitting}
             className="bg-white text-purple-600 hover:bg-gray-100 w-full font-semibold"
           >
-            {isSubmitting ? "Siunčiama..." : t('contact.callRequest.button')}
+            {isSubmitting ? t('contact.callRequest.sending') : t('contact.callRequest.button')}
           </Button>
         </form>
       </CardContent>

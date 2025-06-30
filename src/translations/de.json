@@ -91,7 +91,7 @@
       "youtube": {
         "title": "YouTube-Werbeserie",
         "category": "YouTube Ads",
-        "description": "1M+ Aufrufe und hohe Engagement"
+        "description": "1M+ Aufrufe und hohe Beteiligung"
       }
     }
   },
@@ -105,7 +105,21 @@
       "email": "E-Mail",
       "phone": "Telefonnummer",
       "message": "Erzählen Sie uns von Ihrem Projekt...",
-      "send": "Nachricht senden"
+      "send": "Nachricht senden",
+      "sending": "Wird gesendet...",
+      "emailSubject": "Kontaktformular-Anfrage",
+      "validation": {
+        "error": "Fehler",
+        "requiredFields": "Bitte füllen Sie alle Pflichtfelder aus",
+        "emailFormat": "Bitte geben Sie eine gültige E-Mail-Adresse ein"
+      },
+      "success": {
+        "title": "Erfolg!",
+        "message": "Ihre Nachricht wurde erfolgreich gesendet. Wir werden uns bald bei Ihnen melden!"
+      },
+      "error": {
+        "message": "Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
+      }
     },
     "info": {
       "phone": "Telefon",
@@ -123,7 +137,21 @@
       "name": "Ihr Name",
       "email": "E-Mail *",
       "phone": "Telefonnummer *",
-      "button": "Rückruf anfordern"
+      "button": "Rückruf anfordern",
+      "sending": "Wird gesendet...",
+      "emailSubject": "Rückruf angefordert",
+      "validation": {
+        "error": "Fehler",
+        "requiredFields": "Bitte füllen Sie E-Mail und Telefonnummer aus",
+        "emailFormat": "Bitte geben Sie eine gültige E-Mail-Adresse ein"
+      },
+      "success": {
+        "title": "Erfolg!",
+        "message": "Ihre Rückruf-Anfrage wurde erfolgreich gesendet. Wir werden uns bald bei Ihnen melden!"
+      },
+      "error": {
+        "message": "Anfrage konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
+      }
     },
     "facebook": {
       "title": "Folgen Sie uns auf Facebook"

@@ -24,8 +24,8 @@ export const ContactForm = () => {
     // Validate required fields
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
       toast({
-        title: "Klaida",
-        description: "Prašome užpildyti visus privaloma laukus",
+        title: t('contact.form.validation.error'),
+        description: t('contact.form.validation.requiredFields'),
         variant: "destructive",
       });
       return;
@@ -35,8 +35,8 @@ export const ContactForm = () => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
       toast({
-        title: "Klaida",
-        description: "Prašome įvesti teisingą el. pašto adresą",
+        title: t('contact.form.validation.error'),
+        description: t('contact.form.validation.emailFormat'),
         variant: "destructive",
       });
       return;
@@ -55,8 +55,8 @@ export const ContactForm = () => {
 
       if (response.ok) {
         toast({
-          title: "Sėkmė!",
-          description: "Jūsų žinutė sėkmingai išsiųsta. Susisieksime su jumis greitai!",
+          title: t('contact.form.success.title'),
+          description: t('contact.form.success.message'),
         });
         
         // Reset form after successful submission
@@ -66,8 +66,8 @@ export const ContactForm = () => {
       }
     } catch (error) {
       toast({
-        title: "Klaida",
-        description: "Nepavyko išsiųsti žinutės. Bandykite dar kartą.",
+        title: t('contact.form.validation.error'),
+        description: t('contact.form.error.message'),
         variant: "destructive",
       });
     } finally {
@@ -100,7 +100,7 @@ export const ContactForm = () => {
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* FormSubmit.co configuration fields */}
-          <input type="hidden" name="_subject" value="Kontaktinės formos užklausa" />
+          <input type="hidden" name="_subject" value={t('contact.form.emailSubject')} />
           <input type="hidden" name="_captcha" value="false" />
           <input type="hidden" name="_template" value="table" />
           <input type="hidden" name="_next" value={window.location.origin + "/?success=true"} />
@@ -150,7 +150,7 @@ export const ContactForm = () => {
             disabled={isSubmitting}
             className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 w-full"
           >
-            {isSubmitting ? "Siunčiama..." : t('contact.form.send')}
+            {isSubmitting ? t('contact.form.sending') : t('contact.form.send')}
           </Button>
         </form>
       </CardContent>

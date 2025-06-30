@@ -105,7 +105,21 @@
       "email": "Email",
       "phone": "Phone number",
       "message": "Tell us about your project...",
-      "send": "Send message"
+      "send": "Send message",
+      "sending": "Sending...",
+      "emailSubject": "Contact form request",
+      "validation": {
+        "error": "Error",
+        "requiredFields": "Please fill in all required fields",
+        "emailFormat": "Please enter a valid email address"
+      },
+      "success": {
+        "title": "Success!",
+        "message": "Your message has been sent successfully. We will contact you soon!"
+      },
+      "error": {
+        "message": "Failed to send message. Please try again."
+      }
     },
     "info": {
       "phone": "Phone",
@@ -123,7 +137,21 @@
       "name": "Your name",
       "email": "Email *",
       "phone": "Phone number *",
-      "button": "Request a call"
+      "button": "Request a call",
+      "sending": "Sending...",
+      "emailSubject": "Call request",
+      "validation": {
+        "error": "Error",
+        "requiredFields": "Please fill in email and phone fields",
+        "emailFormat": "Please enter a valid email address"
+      },
+      "success": {
+        "title": "Success!",
+        "message": "Your call request has been sent successfully. We will contact you soon!"
+      },
+      "error": {
+        "message": "Failed to send request. Please try again."
+      }
     },
     "facebook": {
       "title": "Follow us on Facebook"
