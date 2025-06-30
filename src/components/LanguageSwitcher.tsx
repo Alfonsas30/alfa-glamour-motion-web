@@ -5,10 +5,10 @@ import { ChevronDown, Globe } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const languages = [
-  { code: 'lt', name: 'Lietuvių', flag: '🇱🇹' },
-  { code: 'en', name: 'English', flag: '🇺🇸' },
-  { code: 'ru', name: 'Русский', flag: '🇷🇺' },
-  { code: 'de', name: 'Deutsch', flag: '🇩🇪' }
+  { code: 'lt', name: 'Lietuvių', flag: 'LT', bgColor: 'bg-yellow-400' },
+  { code: 'en', name: 'English', flag: 'US', bgColor: 'bg-blue-600' },
+  { code: 'ru', name: 'Русский', flag: 'RU', bgColor: 'bg-red-600' },
+  { code: 'de', name: 'Deutsch', flag: 'DE', bgColor: 'bg-gray-800' }
 ];
 
 export const LanguageSwitcher = () => {
@@ -28,25 +28,24 @@ export const LanguageSwitcher = () => {
         variant="ghost"
         className="text-white hover:text-blue-400 hover:bg-white/10 flex items-center gap-2"
         onClick={() => setIsOpen(!isOpen)}
-        style={{
-          fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
-        }}
       >
         <Globe className="h-4 w-4" />
-        <span className="hidden sm:inline text-lg">
-          {currentLanguage?.flag} {currentLanguage?.name}
+        <span className="hidden sm:inline flex items-center gap-2">
+          <span className={`${currentLanguage?.bgColor} text-white text-xs font-bold px-1.5 py-0.5 rounded`}>
+            {currentLanguage?.flag}
+          </span>
+          {currentLanguage?.name}
         </span>
-        <span className="sm:hidden text-lg">{currentLanguage?.flag}</span>
+        <span className="sm:hidden">
+          <span className={`${currentLanguage?.bgColor} text-white text-xs font-bold px-1.5 py-0.5 rounded`}>
+            {currentLanguage?.flag}
+          </span>
+        </span>
         <ChevronDown className="h-4 w-4" />
       </Button>
 
       {isOpen && (
-        <div 
-          className="absolute top-full right-0 mt-2 bg-blue-800 border border-blue-600 rounded-lg shadow-lg py-2 min-w-[150px] z-50"
-          style={{
-            fontFamily: 'system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif'
-          }}
-        >
+        <div className="absolute top-full right-0 mt-2 bg-blue-800 border border-blue-600 rounded-lg shadow-lg py-2 min-w-[150px] z-50">
           {languages.map((lang) => (
             <button
               key={lang.code}
@@ -55,7 +54,9 @@ export const LanguageSwitcher = () => {
                 language === lang.code ? 'bg-blue-700 text-white' : 'text-white'
               }`}
             >
-              <span className="text-lg">{lang.flag}</span>
+              <span className={`${lang.bgColor} text-white text-xs font-bold px-1.5 py-0.5 rounded`}>
+                {lang.flag}
+              </span>
               <span>{lang.name}</span>
             </button>
           ))}
