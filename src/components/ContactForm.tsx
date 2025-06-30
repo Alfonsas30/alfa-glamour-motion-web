@@ -21,8 +21,11 @@ export const ContactForm = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    console.log('ContactForm: Starting form submission', formData);
+    
     // Validate required fields
     if (!formData.name.trim() || !formData.email.trim() || !formData.message.trim()) {
+      console.log('ContactForm: Validation failed - missing required fields');
       toast({
         title: t('contact.form.validation.error'),
         description: t('contact.form.validation.requiredFields'),
@@ -34,6 +37,7 @@ export const ContactForm = () => {
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
+      console.log('ContactForm: Validation failed - invalid email format');
       toast({
         title: t('contact.form.validation.error'),
         description: t('contact.form.validation.emailFormat'),
@@ -43,17 +47,22 @@ export const ContactForm = () => {
     }
 
     setIsSubmitting(true);
+    console.log('ContactForm: Form validation passed, sending to FormSubmit.co');
 
     try {
       const form = e.target as HTMLFormElement;
       const formDataToSend = new FormData(form);
       
+      console.log('ContactForm: Sending request to FormSubmit.co');
       const response = await fetch('https://formsubmit.co/el/fuwaci', {
         method: 'POST',
         body: formDataToSend
       });
 
+      console.log('ContactForm: Response received', response.status, response.statusText);
+
       if (response.ok) {
+        console.log('ContactForm: Form submitted successfully');
         toast({
           title: t('contact.form.success.title'),
           description: t('contact.form.success.message'),
@@ -62,9 +71,11 @@ export const ContactForm = () => {
         // Reset form after successful submission
         setFormData({ name: "", email: "", phone: "", message: "" });
       } else {
-        throw new Error('Submission failed');
+        console.log('ContactForm: Form submission failed with status', response.status);
+        throw new Error(`Submission failed with status ${response.status}`);
       }
     } catch (error) {
+      console.error('ContactForm: Error during form submission', error);
       toast({
         title: t('contact.form.validation.error'),
         description: t('contact.form.error.message'),
@@ -72,6 +83,7 @@ export const ContactForm = () => {
       });
     } finally {
       setIsSubmitting(false);
+      console.log('ContactForm: Form submission process completed');
     }
   };
 

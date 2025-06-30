@@ -20,8 +20,11 @@ export const CallRequestCard = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
+    console.log('CallRequestCard: Starting call request submission', formData);
+    
     // Validate required fields
     if (!formData.email.trim() || !formData.phone.trim()) {
+      console.log('CallRequestCard: Validation failed - missing required fields');
       toast({
         title: t('contact.callRequest.validation.error'),
         description: t('contact.callRequest.validation.requiredFields'),
@@ -33,6 +36,7 @@ export const CallRequestCard = () => {
     // Validate email format
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email)) {
+      console.log('CallRequestCard: Validation failed - invalid email format');
       toast({
         title: t('contact.callRequest.validation.error'),
         description: t('contact.callRequest.validation.emailFormat'),
@@ -42,17 +46,22 @@ export const CallRequestCard = () => {
     }
 
     setIsSubmitting(true);
+    console.log('CallRequestCard: Form validation passed, sending to FormSubmit.co');
 
     try {
       const form = e.target as HTMLFormElement;
       const formDataToSend = new FormData(form);
       
+      console.log('CallRequestCard: Sending request to FormSubmit.co');
       const response = await fetch('https://formsubmit.co/el/fuwaci', {
         method: 'POST',
         body: formDataToSend
       });
 
+      console.log('CallRequestCard: Response received', response.status, response.statusText);
+
       if (response.ok) {
+        console.log('CallRequestCard: Call request submitted successfully');
         toast({
           title: t('contact.callRequest.success.title'),
           description: t('contact.callRequest.success.message'),
@@ -61,9 +70,11 @@ export const CallRequestCard = () => {
         // Reset form after successful submission
         setFormData({ name: "", email: "", phone: "" });
       } else {
-        throw new Error('Submission failed');
+        console.log('CallRequestCard: Call request submission failed with status', response.status);
+        throw new Error(`Submission failed with status ${response.status}`);
       }
     } catch (error) {
+      console.error('CallRequestCard: Error during call request submission', error);
       toast({
         title: t('contact.callRequest.validation.error'),
         description: t('contact.callRequest.error.message'),
@@ -71,6 +82,7 @@ export const CallRequestCard = () => {
       });
     } finally {
       setIsSubmitting(false);
+      console.log('CallRequestCard: Call request submission process completed');
     }
   };
 
